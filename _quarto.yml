@@ -4,7 +4,7 @@ project:
 
 
 book:
-  title: "[STUDENT/GROUP NAME] Progress Journal"
+  title: "Summer Moon Progress Journal"
   repo-url: https://github.com/pjournal/gh-pages-quarto-template
   chapters:
     - index.qmd
@@ -15,7 +15,9 @@ book:
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: flatly
+      dark: darkly
   pdf:
     documentclass: scrreprt
 

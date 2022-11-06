@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2022-10-01">
 
-<title>[STUDENT/GROUP NAME] Progress Journal - 1&nbsp; Assignment 1</title>
+<title>Summer Moon Progress Journal - 1&nbsp; Assignment 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,10 +100,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -146,8 +148,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">[STUDENT/GROUP NAME] Progress Journal</a> 
-        <div class="sidebar-tools-main">
+      <a href="./">Summer Moon Progress Journal</a> 
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/pjournal/gh-pages-quarto-template" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
     <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
     <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
@@ -164,6 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </a>
         </li>
     </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
     </div>
       </div>
@@ -194,6 +197,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link active" data-scroll-target="#data-wrangling"><span class="toc-section-number">1.1</span>  DATA WRANGLING</a></li>
+  <li><a href="#eda-exploratory-data-analysis" id="toc-eda-exploratory-data-analysis" class="nav-link" data-scroll-target="#eda-exploratory-data-analysis"><span class="toc-section-number">1.2</span>  EDA (Exploratory Data Analysis)</a></li>
   </ul>
 </nav>
     </div>
@@ -242,32 +246,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Changing the class of “Stake (%)” from character to numeric. First erasing “%” character, dividing by 100 and then converting the numeric.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span><span class="st">`</span><span class="at">Stake (%)</span><span class="st">`</span><span class="ot">&lt;-</span><span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">"%"</span>,<span class="st">""</span>,data<span class="sc">$</span><span class="st">`</span><span class="at">Stake (%)</span><span class="st">`</span>))<span class="sc">/</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Zorlamadan dolayı ortaya çıkan NAs</code></pre>
-</div>
 </div>
 <p>Changing the class of “Deal Value (USD)” from character to numeric.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span><span class="st">`</span><span class="at">Deal Value (USD)</span><span class="st">`</span><span class="ot">&lt;-</span><span class="fu">as.numeric</span>(data<span class="sc">$</span><span class="st">`</span><span class="at">Deal Value (USD)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Zorlamadan dolayı ortaya çıkan NAs</code></pre>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span><span class="st">`</span><span class="at">Deal Value (USD)</span><span class="st">`</span><span class="ot">&lt;-</span><span class="fu">as.numeric</span>(data<span class="sc">$</span><span class="st">`</span><span class="at">Deal Value (USD)</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s look at the final types of all coloumns:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 9
-  Target Com…¹ Sector Inves…² Announce…³ Finan…⁴ Inves…⁵ Stake…⁶ Deal …⁷ Inves…⁸
-  &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  
-1 Abonesepeti  SaaS   Keiret… 2021-06-01 Yes     Turkey     0.05  100000 Seed S…
-2 Abrakadabra  Gaming WePlay… 2021-12-01 Yes     Turkey     0.05  250000 Seed S…
-3 Ace Games    Gaming Actera… 2021-04-01 Yes     Turkey…   NA         NA Seed S…
-4 Adlema       Inter… TR Ang… 2021-06-01 Yes     Turkey    NA     120000 Seed S…
-5 Agave Games  Gaming 500 Is… 2021-09-01 Yes     Turkey    NA     100000 Seed S…
-6 Agrio        Finte… lnnova… 2021-06-01 Yes     Turkey    NA    1000000 Seed S…
-# … with abbreviated variable names ¹​`Target Company`, ²​Investor,
-#   ³​`Announcement Date`, ⁴​`Financial Investor`, ⁵​`Investor's Origin`,
-#   ⁶​`Stake (%)`, ⁷​`Deal Value (USD)`, ⁸​`Investment Stage`</code></pre>
+<pre><code>Rows: 297
+Columns: 9
+$ `Target Company`     &lt;chr&gt; "Abonesepeti", "Abrakadabra", "Ace Games", "Adlem…
+$ Sector               &lt;chr&gt; "SaaS", "Gaming", "Gaming", "Internet of things",…
+$ Investor             &lt;chr&gt; "Keiretsu Forum, Berkan Burla", "WePlay Ventures"…
+$ `Announcement Date`  &lt;date&gt; 2021-06-01, 2021-12-01, 2021-04-01, 2021-06-01, …
+$ `Financial Investor` &lt;chr&gt; "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", …
+$ `Investor's Origin`  &lt;chr&gt; "Turkey", "Turkey", "Turkey, USA", "Turkey", "Tur…
+$ `Stake (%)`          &lt;dbl&gt; 0.0500, 0.0500, NA, NA, NA, NA, 0.1092, NA, NA, 0…
+$ `Deal Value (USD)`   &lt;dbl&gt; 100000, 250000, NA, 120000, 100000, 1000000, 2500…
+$ `Investment Stage`   &lt;chr&gt; "Seed Stage", "Seed Stage", "Seed Stage", "Seed S…</code></pre>
 </div>
 </div>
+<p>Let’s change the coloumn names and look at the summary.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">rename</span>(data,<span class="at">TargetCompany=</span><span class="st">`</span><span class="at">Target Company</span><span class="st">`</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">rename</span>(data,<span class="at">Date=</span><span class="st">`</span><span class="at">Announcement Date</span><span class="st">`</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">rename</span>(data,<span class="at">FinancialInvestor=</span><span class="st">`</span><span class="at">Financial Investor</span><span class="st">`</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">rename</span>(data,<span class="at">InvestorOrigin=</span><span class="st">`</span><span class="at">Investor's Origin</span><span class="st">`</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">rename</span>(data,<span class="at">Stake=</span><span class="st">`</span><span class="at">Stake (%)</span><span class="st">`</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">rename</span>(data,<span class="at">DealValue=</span><span class="st">`</span><span class="at">Deal Value (USD)</span><span class="st">`</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>data<span class="ot">&lt;-</span><span class="fu">rename</span>(data,<span class="at">Stage=</span><span class="st">`</span><span class="at">Investment Stage</span><span class="st">`</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 297
+Columns: 9
+$ TargetCompany     &lt;chr&gt; "Abonesepeti", "Abrakadabra", "Ace Games", "Adlema",…
+$ Sector            &lt;chr&gt; "SaaS", "Gaming", "Gaming", "Internet of things", "G…
+$ Investor          &lt;chr&gt; "Keiretsu Forum, Berkan Burla", "WePlay Ventures", "…
+$ Date              &lt;date&gt; 2021-06-01, 2021-12-01, 2021-04-01, 2021-06-01, 202…
+$ FinancialInvestor &lt;chr&gt; "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Ye…
+$ InvestorOrigin    &lt;chr&gt; "Turkey", "Turkey", "Turkey, USA", "Turkey", "Turkey…
+$ Stake             &lt;dbl&gt; 0.0500, 0.0500, NA, NA, NA, NA, 0.1092, NA, NA, 0.15…
+$ DealValue         &lt;dbl&gt; 100000, 250000, NA, 120000, 100000, 1000000, 250000,…
+$ Stage             &lt;chr&gt; "Seed Stage", "Seed Stage", "Seed Stage", "Seed Stag…</code></pre>
+</div>
+</div>
+</section>
+<section id="eda-exploratory-data-analysis" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="eda-exploratory-data-analysis"><span class="header-section-number">1.2</span> EDA (Exploratory Data Analysis)</h2>
 
 
 </section>
@@ -293,6 +320,119 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

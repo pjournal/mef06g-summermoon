@@ -25,12 +25,31 @@ data$`Announcement Date`<-my(data$`Announcement Date`)
 ```
 
 Changing the class of "Stake (%)" from character to numeric. First erasing "%" character, dividing by 100 and then converting the numeric.
-```{r}
+```{r,warning=FALSE}
 data$`Stake (%)`<-as.numeric(sub("%","",data$`Stake (%)`))/100
 ```
 
 Changing the class of "Deal Value (USD)" from character to numeric.
-```{r}
+```{r,warning=FALSE}
 data$`Deal Value (USD)`<-as.numeric(data$`Deal Value (USD)`)
-head(data)
 ```
+
+
+Let's look at the final types of all coloumns:
+```{r}
+glimpse(data)
+```
+
+Let's change the coloumn names and look at the summary.
+```{r}
+data<-rename(data,TargetCompany=`Target Company`)
+data<-rename(data,Date=`Announcement Date`)
+data<-rename(data,FinancialInvestor=`Financial Investor`)
+data<-rename(data,InvestorOrigin=`Investor's Origin`)
+data<-rename(data,Stake=`Stake (%)`)
+data<-rename(data,DealValue=`Deal Value (USD)`)
+data<-rename(data,Stage=`Investment Stage`)
+glimpse(data)
+```
+
+## EDA (Exploratory Data Analysis)
