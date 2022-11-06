@@ -2,6 +2,7 @@ project:
   type: book
   output-dir: docs
 
+
 book:
   title: "[STUDENT/GROUP NAME] Progress Journal"
   repo-url: https://github.com/pjournal/gh-pages-quarto-template

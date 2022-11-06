@@ -3,10 +3,34 @@ title: "Assignment 1"
 date: "2022-10-01"
 ---
 
-This is a template example qmd output page. You may see an example R code below.
+## DATA WRANGLING
 
+Before starting EDA, it will be better to prepare the data. We will convert related data to appropriate data types. If we have proper data types, then we can easily use libraries and functions to manipulate the data.
+
+Loading libraries:
+```{r,output=FALSE}
+library(dplyr)
+library(readxl)
+library(lubridate)
+```
+
+Reading xls file:
 ```{r}
-set.seed(1)
-vec1 <- sample(LETTERS,5)
-paste0(vec1,collapse="")
+data<-read_excel("docs/startup_deals_2021.xlsx")
+```
+
+Changing the class of "Announcement Data" coloumn from character to date. Use built-in function -\> "my" function from lubridate library.
+```{r}
+data$`Announcement Date`<-my(data$`Announcement Date`)  
+```
+
+Changing the class of "Stake (%)" from character to numeric. First erasing "%" character, dividing by 100 and then converting the numeric.
+```{r}
+data$`Stake (%)`<-as.numeric(sub("%","",data$`Stake (%)`))/100
+```
+
+Changing the class of "Deal Value (USD)" from character to numeric.
+```{r}
+data$`Deal Value (USD)`<-as.numeric(data$`Deal Value (USD)`)
+head(data)
 ```
