@@ -1,0 +1,23 @@
+project:
+  type: book
+  output-dir: docs
+
+
+book:
+  title: "Summer Moon Progress Journal"
+  repo-url: https://github.com/pjournal/gh-pages-quarto-template
+  chapters:
+    - index.qmd
+    - assignment1.qmd
+  page-footer: 
+    center: "[MEF BDA 503](https://mef-bda503.github.io)" 
+  sharing: [twitter, facebook]
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+  pdf:
+    documentclass: scrreprt
+
