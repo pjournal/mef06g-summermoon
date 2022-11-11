@@ -17,7 +17,7 @@
         "rmdVisualMode": "true",
         "rmdVisualWrapConfigured": "true",
         "docOutlineVisible": "1",
-        "rmdVisualModeLocation": "2:5403",
+        "rmdVisualModeLocation": "50:0",
         "rmdVisualCollapsedChunks": ""
     },
     "folds": "",
@@ -25,7 +25,7 @@
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1668173823421,
+    "last_content_update": 1668173950463,
     "read_only": false,
     "read_only_alternatives": []
 }
