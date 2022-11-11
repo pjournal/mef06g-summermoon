@@ -1,0 +1,2 @@
+"0","df1 %>% "
+"0","  pivot_wider(names_from = investment_stage, values_from = total_deal)"

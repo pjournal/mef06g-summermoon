@@ -1,1 +1,1 @@
-"0","investors <- separate_rows(investors, Investor, sep = "","")"
+"0","investors <- separate_rows(investors, investor, sep = "","")"

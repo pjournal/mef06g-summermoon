@@ -1,0 +1,6 @@
+"0","df1 %>% ggplot(aes(x = announcement_date, y = total_deal, color = investment_stage)) + "
+"0","        geom_line() +"
+"0","        scale_x_date(date_breaks=""1 month"", date_labels=""%b"") +"
+"0","        labs(title = ""Monthly Deal(USD) by Investment Stage"") +"
+"0","        xlab(""Announcement Date"") +"
+"0","        ylab(""Deal(USD)"")"

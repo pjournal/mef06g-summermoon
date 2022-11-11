@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2022-10-01">
 
 <title>Summer Moon Progress Journal - 1&nbsp; Assignment 1</title>
 <style>
@@ -196,8 +195,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link active" data-scroll-target="#data-wrangling"><span class="toc-section-number">1.1</span>  DATA WRANGLING</a></li>
-  <li><a href="#eda-exploratory-data-analysis" id="toc-eda-exploratory-data-analysis" class="nav-link" data-scroll-target="#eda-exploratory-data-analysis"><span class="toc-section-number">1.2</span>  EDA (Exploratory Data Analysis)</a></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link active" data-scroll-target="#data-wrangling">DATA WRANGLING</a></li>
+  <li><a href="#eda-exploratory-data-analysis" id="toc-eda-exploratory-data-analysis" class="nav-link" data-scroll-target="#eda-exploratory-data-analysis">EDA (Exploratory Data Analysis)</a></li>
   </ul>
 </nav>
     </div>
@@ -217,7 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 1, 2022</p>
+      <p class="date">Nov 11, 2022</p>
     </div>
   </div>
     
@@ -226,8 +225,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="data-wrangling" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="data-wrangling"><span class="header-section-number">1.1</span> DATA WRANGLING</h2>
+<section id="data-wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling">DATA WRANGLING</h2>
 <p>Before starting EDA, it will be better to prepare the data. We will convert related data to appropriate data types. If we have proper data types, then we can easily use libraries and functions to manipulate the data.</p>
 <p>Loading libraries:</p>
 <div class="cell">
@@ -237,9 +236,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringi)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">dplyr.summarise.inform =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">dplyr.summarise.inform =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Reading xls file:</p>
 <div class="cell">
@@ -283,9 +281,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>deals<span class="sc">$</span>org_count <span class="ot">&lt;-</span> <span class="fu">lengths</span>(<span class="fu">strsplit</span>(deals<span class="sc">$</span>investor_origin, <span class="st">","</span>))</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>deals<span class="sc">$</span>inv_count <span class="ot">&lt;-</span> <span class="fu">lengths</span>(<span class="fu">strsplit</span>(deals<span class="sc">$</span>investor, <span class="st">","</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>deals <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">deal_value =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(deal_value), <span class="dv">0</span>, deal_value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Let’s look at the final types of all columns:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(deals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(deals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 297
 Columns: 12
@@ -297,7 +298,7 @@ $ announcement_date  &lt;date&gt; 2021-06-01, 2021-12-01, 2021-04-01, 2021-06-01
 $ financial_investor &lt;chr&gt; "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Y…
 $ investor_origin    &lt;chr&gt; "Turkey", "Turkey", "Turkey, USA", "Turkey", "Turke…
 $ stake              &lt;dbl&gt; 5.00, 5.00, NA, NA, NA, NA, 10.92, NA, NA, 15.38, N…
-$ deal_value         &lt;dbl&gt; 100000, 250000, NA, 120000, 100000, 1000000, 250000…
+$ deal_value         &lt;dbl&gt; 100000, 250000, 0, 120000, 100000, 1000000, 250000,…
 $ investment_stage   &lt;chr&gt; "Seed Stage", "Seed Stage", "Seed Stage", "Seed Sta…
 $ org_count          &lt;int&gt; 1, 1, 2, 1, 1, 1, 2, 1, 1, 3, 1, 1, 1, 1, 2, 1, 1, …
 $ inv_count          &lt;int&gt; 2, 1, 5, 1, 2, 1, 4, 1, 1, 4, 5, 1, 1, 1, 2, 1, 1, …</code></pre>
@@ -305,56 +306,56 @@ $ inv_count          &lt;int&gt; 2, 1, 5, 1, 2, 1, 4, 1, 1, 4, 5, 1, 1, 1, 2, 1,
 </div>
 <p>Dataframes namely “origins” and “investors” are created in order to separate collapsed columns into multiple rows.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>origins <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">select</span>(ID, investor_origin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>origins <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">select</span>(ID, investor_origin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>origins <span class="ot">&lt;-</span> <span class="fu">separate_rows</span>(origins, investor_origin, <span class="at">sep =</span> <span class="st">", "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>origins <span class="ot">&lt;-</span> <span class="fu">separate_rows</span>(origins, investor_origin, <span class="at">sep =</span> <span class="st">", "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>investors <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">select</span>(ID, investor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>investors <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">select</span>(ID, investor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>investors <span class="ot">&lt;-</span> <span class="fu">separate_rows</span>(investors, investor, <span class="at">sep =</span> <span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>investors <span class="ot">&lt;-</span> <span class="fu">separate_rows</span>(investors, investor, <span class="at">sep =</span> <span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="eda-exploratory-data-analysis" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="eda-exploratory-data-analysis"><span class="header-section-number">1.2</span> EDA (Exploratory Data Analysis)</h2>
+<section id="eda-exploratory-data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="eda-exploratory-data-analysis">EDA (Exploratory Data Analysis)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df0 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(investment_stage) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">total_deal =</span> <span class="fu">sum</span>(deal_value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df0 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(investment_stage) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">total_deal =</span> <span class="fu">sum</span>(deal_value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df0 <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> total_deal, <span class="at">fill=</span> investment_stage)) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start=</span><span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Deal(USD) by Investment Stage"</span>) <span class="sc">+</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df0 <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> total_deal, <span class="at">fill=</span> investment_stage)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Deal(USD) by Investment Stage"</span>) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="assignment1_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<p><img src="assignment1_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">filter</span>(investment_stage <span class="sc">!=</span> <span class="st">"Acquisition"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                <span class="fu">group_by</span>(announcement_date, investment_stage) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                <span class="fu">summarise</span>(<span class="at">total_deal =</span> <span class="fu">sum</span>(deal_value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">filter</span>(investment_stage <span class="sc">!=</span> <span class="st">"Acquisition"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                <span class="fu">group_by</span>(announcement_date, investment_stage) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                <span class="fu">summarise</span>(<span class="at">total_deal =</span> <span class="fu">sum</span>(deal_value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> announcement_date, <span class="at">y =</span> total_deal, <span class="at">color =</span> investment_stage)) <span class="sc">+</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_date</span>(<span class="at">date_breaks=</span><span class="st">"1 month"</span>, <span class="at">date_labels=</span><span class="st">"%b"</span>) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Monthly Deal(USD) by Investment Stage"</span>) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">"Announcement Date"</span>) <span class="sc">+</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">"Deal(USD)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> announcement_date, <span class="at">y =</span> total_deal, <span class="at">color =</span> investment_stage)) <span class="sc">+</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_date</span>(<span class="at">date_breaks=</span><span class="st">"1 month"</span>, <span class="at">date_labels=</span><span class="st">"%b"</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Monthly Deal(USD) by Investment Stage"</span>) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">"Announcement Date"</span>) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">"Deal(USD)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="assignment1_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="assignment1_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">%&gt;%</span> </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> investment_stage, <span class="at">values_from =</span> total_deal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> investment_stage, <span class="at">values_from =</span> total_deal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12 × 4
 # Groups:   announcement_date [12]
@@ -363,335 +364,116 @@ $ inv_count          &lt;int&gt; 2, 1, 5, 1, 2, 1, 4, 1, 1, 4, 5, 1, 1, 1, 2, 1,
  1 2021-01-01              128000000       3644220               NA
  2 2021-02-01                     50       9646893               NA
  3 2021-03-01                2295571       7891111        300000000
- 4 2021-04-01                     NA            NA               NA
+ 4 2021-04-01                      0       3446473               NA
  5 2021-05-01                     NA       6645833               NA
- 6 2021-06-01                     NA       7676675        555000000
+ 6 2021-06-01              160227346       7676675        555000000
  7 2021-07-01                2775796       4553192               NA
  8 2021-08-01               24052936.     12342500         35000000
- 9 2021-09-01               14500000            NA               NA
+ 9 2021-09-01               14500000       6549644               NA
 10 2021-10-01                     NA       6278078               NA
 11 2021-11-01                     NA       9482056               NA
 12 2021-12-01               36200000      12385295               NA</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">filter</span>(investment_stage <span class="sc">!=</span> <span class="st">"Acquisition"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(investment_stage, sector) <span class="sc">%&gt;%</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarise</span>(<span class="at">total_deal =</span> <span class="fu">sum</span>(deal_value)) <span class="sc">%&gt;%</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">top_n</span>(<span class="dv">10</span>, total_deal) <span class="sc">%&gt;%</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">arrange</span>(<span class="fu">desc</span>(total_deal))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">filter</span>(investment_stage <span class="sc">!=</span> <span class="st">"Acquisition"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(investment_stage, sector) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarise</span>(<span class="at">total_deal =</span> <span class="fu">sum</span>(deal_value)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">top_n</span>(<span class="dv">20</span>, total_deal) <span class="sc">%&gt;%</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>         <span class="fu">arrange</span>(<span class="fu">desc</span>(total_deal))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(sector, <span class="sc">-</span>total_deal), <span class="at">y =</span> total_deal, <span class="at">fill =</span> investment_stage)) <span class="sc">+</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">60</span>,<span class="at">vjust=</span><span class="dv">1</span>,<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Deal(USD) by Sector &amp; Investment Stage"</span>) <span class="sc">+</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">"Deal(USD)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(sector, <span class="sc">-</span>total_deal), <span class="at">y =</span> total_deal, <span class="at">fill =</span> investment_stage)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">60</span>,<span class="at">vjust=</span><span class="dv">1</span>,<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Deal(USD) by Sector &amp; Investment Stage"</span>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">"Deal(USD)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="assignment1_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<p><img src="assignment1_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>deals <span class="sc">%&gt;%</span> <span class="fu">filter</span>(investment_stage <span class="sc">!=</span> <span class="st">"Acquisition"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(target_company, sector) <span class="sc">%&gt;%</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarise</span>(<span class="at">total_deal =</span> <span class="fu">sum</span>(deal_value)) <span class="sc">%&gt;%</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">top_n</span>(<span class="dv">10</span>, total_deal) <span class="sc">%&gt;%</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">arrange</span>(<span class="fu">desc</span>(total_deal)) <span class="sc">%&gt;%</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>         <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>deals <span class="sc">%&gt;%</span> <span class="fu">filter</span>(investment_stage <span class="sc">!=</span> <span class="st">"Acquisition"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(target_company, sector) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarise</span>(<span class="at">total_deal =</span> <span class="fu">sum</span>(deal_value)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">top_n</span>(<span class="dv">10</span>, total_deal) <span class="sc">%&gt;%</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>         <span class="fu">arrange</span>(<span class="fu">desc</span>(total_deal)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>         <span class="fu">print</span>(<span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 231 × 3
-# Groups:   target_company [229]
-    target_company       sector                   total_deal
-    &lt;chr&gt;                &lt;chr&gt;                         &lt;dbl&gt;
-  1 Getir                Delivery &amp; Logistics    1018000000 
-  2 Dream Games          Gaming                   155000050 
-  3 Akinon               Ecommerce enabler         20000000 
-  4 Servislet            Marketplace               12500000 
-  5 Colendi              Fintech                   12000000 
-  6 RS Research          Deeptech                  12000000 
-  7 Tarfin               Agritech                   8000000 
-  8 hadi                 Gaming                     5200000 
-  9 Yolda.com            Delivery &amp; Logistics       5000000 
- 10 Brew Games           Gaming                     4000000 
- 11 Ödeal                Fintech                    3227346 
- 12 Alotech              Telecom                    3000000 
- 13 TikTak               Mobility                   3000000 
- 14 Veloxia              Gaming                     3000000 
- 15 Fazla Gıda           Foodtech                   2775796 
- 16 ViraSoft             Healthtech                 2500000 
- 17 Plant Factory        Agritech                   2328000 
- 18 Forno Games          Gaming                     2324534 
- 19 Segmentify           Ecommerce Enabler          2295571 
- 20 Evreka               SaaS                       2200000 
- 21 Norma                Fintech                    2000000 
- 22 Trio Mobil           Internet of things         2000000 
- 23 Cerebrum Tech        Artificial Intelligence    1700000 
- 24 Robusta              Robotics                   1440000 
- 25 Laska Energy         Energy                     1400000 
- 26 Tarentum             Artificial Intelligence    1400000 
- 27 ArgosAI              Deeptech                   1309091 
- 28 HEY Games            Gaming                     1200000 
- 29 TEA Networks         Deeptech                   1160000 
- 30 EasyCep              Ecommerce enabler          1103361 
- 31 Fuudy                Delivery &amp; Logistics       1100000 
- 32 Hungri Games         Gaming                     1100000 
- 33 Zyrone Dynamics      Aviationtech               1050000 
- 34 Agrio                Fintech                    1000000 
- 35 Avane Cloud Kitchens Foodtech                   1000000 
- 36 BiSu                 Delivery &amp; Logistics       1000000 
- 37 CET Tech             Deeptech                   1000000 
- 38 Datapad              Data Analytics             1000000 
- 39 Fintegre             Fintech                    1000000 
- 40 Metrobi              Mobility                   1000000 
- 41 Midas                Fintech                    1000000 
- 42 WorqCompany          SaaS                       1000000 
- 43 BiLira               Fintech                     900000 
- 44 Riders.ai            Robotics                    900000 
- 45 PackUpp              Delivery &amp; Logistics        867222 
- 46 Fortune Mine         Gaming                      846050 
- 47 Optiyol              Artificial Intelligence     810000 
- 48 Vidyodan             Ecommerce enabler           800000 
- 49 Artboard Studio      SaaS                        750000 
- 50 Gulliver's Games     Gaming                      750000 
- 51 biftek               Foodtech                    725000 
- 52 Ango Al              Artificial Intelligence     720000 
- 53 lnooster             HRTech                      700000 
- 54 Webee                Travel                      693000 
- 55 VOILA                Marketingtech               615000 
- 56 Beije                Healthtech                  600000 
- 57 Missafir             Marketplace                 544000 
- 58 Arvis Games          Gaming                      507000 
- 59 BARAKATECH           SaaS                        500000 
- 60 Click Game Studio    Gaming                      500000 
- 61 DugunBuketi.com      Marketplace                 500000 
- 62 ikas                 SaaS                        500000 
- 63 Skysens              Internet of things          500000 
- 64 Techsign             Deeptech                    500000 
- 65 Tiplay               Gaming                      500000 
- 66 Wask.co              SaaS                        500000 
- 67 HOP!                 Mobility                    496000 
- 68 Hiwell               Healthtech                  493760 
- 69 Bulutklinik          SaaS                        451500 
- 70 ForFarming           Agritech                    450000 
- 71 Musixen              Media                       450000 
- 72 Tridi                3D Printing                 436000 
- 73 Cognitiwe Bilişim    Artificial Intelligence     430000 
- 74 ESA Esports          Gaming                      430000 
- 75 Fiber Games          Gaming                      430000 
- 76 Magnus               Artificial Intelligence     420000 
- 77 Udo Games            Gaming                      420000 
- 78 Mafia Games          Gaming                      411000 
- 79 Cowealthy            Agritech                    400000 
- 80 Houston Bionics      Healthtech                  400000 
- 81 Kronnika             Artificial Intelligence     400000 
- 82 LIVAD                Advertising                 400000 
- 83 UnoMoi               Retailtech                  400000 
- 84 Syntonym             Cybersecurity               390000 
- 85 Clotie               Retailtech                  378313 
- 86 Mindsite             Ecommerce enabler           376800 
- 87 Magnetiq             Marketingtech               375000 
- 88 Sertifier            SaaS                        371269 
- 89 iletmen              Delivery &amp; Logistics        365264 
- 90 Saf Nutrition        Foodtech                    350000 
- 91 Ulive                Sports                      350000 
- 92 Usersdot             Data analytics              346000 
- 93 Enucuzoyun.com       Gaming                      340000 
- 94 ARTI OX              Blockchain                  334384 
- 95 Octovan              Delivery &amp; Logistics        322610 
- 96 Eyedius              SaaS                        300000 
- 97 SportsERP            Sports                      300000 
- 98 Vrlab Academy        Education                   300000 
- 99 Agrovisio            Agritech                    285700 
-100 Rentiva              Mobility                    270160 
-101 Co Print             3D Printing                 263400 
-102 Finfree              Fintech                     260631 
-103 Mind Behind          Artificial Intelligence     252366 
-104 Abrakadabra          Gaming                      250000 
-105 Cube Games Studio    Gaming                      250000 
-106 DersimiX             Education                   250000 
-107 Eyecheckup           Healthtech                  250000 
-108 Juphy                SaaS                        250000 
-109 Khenda               Image process               250000 
-110 Kunduz               Education                   250000 
-111 manim                Fintech                     250000 
-112 Maslak Teknoloji     Fintech                     250000 
-113 Robomotion           Artificial Intelligence     250000 
-114 Smartalpha           Healthtech                  250000 
-115 manibux              Fintech                     240000 
-116 Coensio              HRTech                      233363 
-117 ERG Controls         Biotech                     221195 
-118 Medialyzer           Advertising                 220000 
-119 Workiom              SaaS                        220000 
-120 Batron Arge          Energy                      208314 
-121 weepay               Fintech                     200000 
-122 lnnerjoy             Healthtech                  194260 
-123 PCI Checklist        Fintech                     180379 
-124 Archmir              Fintech                     180000 
-125 Shopalm              Ecommerce enabler           178902 
-126 Bakiyem              Fintech                     172595 
-127 Apphic Games         Gaming                      167500 
-128 Fongogo              Fintech                     163296 
-129 Barty                Marketplace                 150000 
-130 gelHemen             Marketplace                 150000 
-131 Robotistan           Marketplace                 150000 
-132 SensAI               Artificial Intelligence     150000 
-133 Vahaa                Internet of things          150000 
-134 Werk                 SaaS                        150000 
-135 Komunite             Marketplace                 140000 
-136 Byqee                Mobility                    139400 
-137 Edamarge             Sports                      132487 
-138 Promoseed            Biotech                     128110 
-139 Adlema               Internet of things          120000 
-140 Pacha                Foodtech                    118561 
-141 AMAZOI               Augmented Reality           115400 
-142 Arkerobox            Marketplace                 113315 
-143 Fernvaille           Gaming                      111172 
-144 MediboothVR          Augmented Reality           109175 
-145 Juphy                HRTech                      103818 
-146 Hamurla              Delivery &amp; Logistics        101465 
-147 Abonesepeti          SaaS                        100000 
-148 Agave Games          Gaming                      100000 
-149 ART Labs             Deeptech                    100000 
-150 AuditNow             SaaS                        100000 
-151 Beemo                Fintech                     100000 
-152 Bren                 Deeptech                    100000 
-153 Ela Game Studio      Gaming                      100000 
-154 Gotocure             Healthtech                  100000 
-155 Hero Concept         Gaming                      100000 
-156 Hextech Green        Agritech                    100000 
-157 Kahvegibikahve       Marketplace                 100000 
-158 Kidolog              Healthtech                  100000 
-159 Legna Medical        Healthtech                  100000 
-160 makromusic           Media                       100000 
-161 Malwation            Cybersecurity               100000 
-162 Medklik              Healthtech                  100000 
-163 Octopus              Media                       100000 
-164 Octopus TV           Media                       100000 
-165 Pax Animi Games      Gaming                      100000 
-166 Peyk                 SaaS                        100000 
-167 Popile               Sports                      100000 
-168 Rise X               Deeptech                    100000 
-169 Simularge            SaaS                        100000 
-170 SmartOpt             SaaS                        100000 
-171 The Academys         Gaming                      100000 
-172 Tiramisu             Gaming                      100000 
-173 AuthTake             Cybersecurity                98601 
-174 RoItek               Telecom                      93500 
-175 AiHear               Artificial Intelligence      90069 
-176 CranioCatch          Deeptech                     88400 
-177 Evodice              Gaming                       86000 
-178 DeepSport            Sports                       85000 
-179 Classest             Education                    84141 
-180 Alpgen Robotics      Robotics                     82267 
-181 Wellbees             HRTech                       81214 
-182 SmartCV              HRTech                       80000 
-183 Champy Games         Gaming                       77428 
-184 Arkim                Foodtech                     75000 
-185 Pastacıdan           Foodtech                     74196 
-186 Boodio               Book                         60438 
-187 Yeniben              Healthtech                   60340 
-188 BRB                  Travel                       55000 
-189 Geliverio            Delivery &amp; Logistics         55000 
-190 Ne Ekersen           Agritech                     55000 
-191 Alwox Games          Gaming                       50000 
-192 Artuex               Gaming                       50000 
-193 BigPogo Games        Gaming                       50000 
-194 Bridgesoft           Deeptech                     50000 
-195 Cloudeeper           Blockchain                   50000 
-196 crwizard             Marketingtech                50000 
-197 DotFour Games        Gaming                       50000 
-198 Edvido               Marketplace                  50000 
-199 Fideyo               Media                        50000 
-200 Forge Games          Gaming                       50000 
-201 Garawell Games       Gaming                       50000 
-202 Givlon               Marketplace                  50000 
-203 Glossy Games         Gaming                       50000 
-204 Gorilla Softworks    Gaming                       50000 
-205 Gyroscoping Games    Gaming                       50000 
-206 Hoody Studios        Gaming                       50000 
-207 Hypebive             Gaming                       50000 
-208 iltema               Deeptech                     50000 
-209 İntera ktif Kredi    Fintech                      50000 
-210 KnowYourX            Cybersecurity                50000 
-211 MCM ARGE             Advanced materials           50000 
-212 OppZone              Marketingtech                50000 
-213 Partymag             Retailtech                   50000 
-214 Predica Al           Artificial Intelligence      50000 
-215 PulpoAR              Artificial Intelligence      50000 
-216 Shiftplanner         HRTech                       50000 
-217 Spechy               Telecom                      50000 
-218 Spyke Games          Gaming                       50000 
-219 Swipeline            Media                        50000 
-220 Tasby Games          Gaming                       50000 
-221 YILKO Games          Gaming                       50000 
-222 BukyTalk             Education                    49704 
-223 ART Labs             Artificial Intelligence      45000 
-224 lnnowayRG            Research                     42000 
-225 Tunga Soft           Gaming                       34550 
-226 Çizgi                Media                        34000 
-227 Melo App             Marketplace                  30000 
-228 Blurry               Media                        25000 
-229 Eyurtlar             Travel                       25000 
-230 Bulut Sepet          Digital Comparison           20000 
-231 Buyutech             Visiontech                    2936.</code></pre>
+<pre><code># A tibble: 10 × 3
+   target_company sector               total_deal
+   &lt;chr&gt;          &lt;chr&gt;                     &lt;dbl&gt;
+ 1 Getir          Delivery &amp; Logistics 1018000000
+ 2 Dream Games    Gaming                155000050
+ 3 Akinon         Ecommerce enabler      20000000
+ 4 Servislet      Marketplace            12500000
+ 5 Colendi        Fintech                12000000
+ 6 RS Research    Deeptech               12000000
+ 7 Tarfin         Agritech                8000000
+ 8 hadi           Gaming                  5200000
+ 9 Yolda.com      Delivery &amp; Logistics    5000000
+10 Brew Games     Gaming                  4000000</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(investment_stage, announcement_date) <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">summarise</span>(<span class="at">total_inv_cnt =</span> <span class="fu">sum</span>(inv_count), <span class="at">total_deal =</span> <span class="fu">sum</span>(deal_value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(investment_stage, announcement_date) <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">summarise</span>(<span class="at">total_inv_cnt =</span> <span class="fu">sum</span>(inv_count), <span class="at">total_deal =</span> <span class="fu">sum</span>(deal_value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> announcement_date, <span class="at">y =</span> total_inv_cnt, <span class="at">color =</span> investment_stage)) <span class="sc">+</span> </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> total_deal)) <span class="sc">+</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_date</span>(<span class="at">date_breaks=</span><span class="st">"1 month"</span>, <span class="at">date_labels=</span><span class="st">"%b"</span>) <span class="sc">+</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Monthly Investor Count by Investment Stage"</span>) <span class="sc">+</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">"Announcement Date"</span>) <span class="sc">+</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">"Investor Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> announcement_date, <span class="at">y =</span> total_inv_cnt, <span class="at">color =</span> investment_stage)) <span class="sc">+</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> total_deal)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_date</span>(<span class="at">date_breaks=</span><span class="st">"1 month"</span>, <span class="at">date_labels=</span><span class="st">"%b"</span>) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Monthly Investor Count by Investment Stage"</span>) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">"Announcement Date"</span>) <span class="sc">+</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">"Investor Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="assignment1_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<p><img src="assignment1_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df4 <span class="ot">&lt;-</span> origins <span class="sc">%&gt;%</span> </span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(deals, <span class="at">by =</span> <span class="st">"ID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df4 <span class="ot">&lt;-</span> origins <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(deals, <span class="at">by =</span> <span class="st">"ID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df5 <span class="ot">&lt;-</span> df4 <span class="sc">%&gt;%</span> </span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(investor_origin.x, investment_stage) <span class="sc">%&gt;%</span> </span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(investment_stage, investor_origin.x) <span class="sc">%&gt;%</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">arrange</span>(<span class="fu">desc</span>(count)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">slice_max</span>(count, <span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df5 <span class="ot">&lt;-</span> df4 <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(investor_origin.x, investment_stage) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(investor_origin.x <span class="sc">!=</span> <span class="st">'NA'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(investment_stage, investor_origin.x) <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">arrange</span>(<span class="fu">desc</span>(count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df5 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> investment_stage, <span class="at">x =</span> investor_origin.x, <span class="at">y =</span> count))  <span class="sc">+</span> </span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"fill"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>,<span class="at">vjust=</span><span class="dv">1</span>,<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Monthly Investor Origin Percentage by Investment Stage"</span>) <span class="sc">+</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">"Investor Origin"</span>) <span class="sc">+</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">"Investor Origin Percentage"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df5 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> investment_stage, <span class="at">x =</span> investor_origin.x, <span class="at">y =</span> count))  <span class="sc">+</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"fill"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>,<span class="at">vjust=</span><span class="dv">1</span>,<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Monthly Investor Origin Percentage by Investment Stage"</span>) <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">"Investor Origin"</span>) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">"Investor Origin Percentage"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="assignment1_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+<p><img src="assignment1_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df6 <span class="ot">&lt;-</span> investors <span class="sc">%&gt;%</span> </span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(investor) <span class="sc">%&gt;%</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">arrange</span>(<span class="fu">desc</span>(count)) <span class="sc">%&gt;%</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">slice_max</span>(count, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df6 <span class="ot">&lt;-</span> investors <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(investor) <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">arrange</span>(<span class="fu">desc</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">slice_max</span>(count, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df6 <span class="sc">%&gt;%</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> count, <span class="at">fill=</span> investor)) <span class="sc">+</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start=</span><span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 5 Investor"</span>) <span class="sc">+</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df6 <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> count, <span class="at">fill=</span> investor)) <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 5 Investor"</span>) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="assignment1_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+<p><img src="assignment1_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 

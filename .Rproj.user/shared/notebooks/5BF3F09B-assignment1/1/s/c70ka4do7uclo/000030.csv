@@ -1,6 +1,0 @@
-"0","df5 <- df4 %>% "
-"0","        select(investor_origin.x, investment_stage) %>% "
-"0","        group_by(investor_origin.x, investment_stage) %>%"
-"0","        summarise(count = n()) %>%"
-"0","        arrange(desc(count)) %>%"
-"0","        slice_max(count, n = 10)"

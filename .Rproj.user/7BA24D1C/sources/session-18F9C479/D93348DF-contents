@@ -85,10 +85,6 @@ deals$org_count <- lengths(strsplit(deals$investor_origin, ","))
 deals$inv_count <- lengths(strsplit(deals$investor, ","))
 ```
 
-```{r}
-deals <- deals %>% mutate(deal_value = ifelse(is.na(deal_value), 0, deal_value))
-```
-
 Let's look at the final types of all columns:
 
 ```{r}
@@ -155,8 +151,7 @@ df1 %>%
 df2 <- deals %>% filter(investment_stage != "Acquisition") %>%
          group_by(investment_stage, sector) %>%
          summarise(total_deal = sum(deal_value)) %>%
-         ungroup() %>%
-         top_n(20, total_deal) %>%
+         top_n(10, total_deal) %>%
          arrange(desc(total_deal))
 ```
 
@@ -173,7 +168,6 @@ df2 %>% ggplot(aes(x = reorder(sector, -total_deal), y = total_deal, fill = inve
 deals %>% filter(investment_stage != "Acquisition") %>%
          group_by(target_company, sector) %>%
          summarise(total_deal = sum(deal_value)) %>%
-         ungroup() %>%
          top_n(10, total_deal) %>%
          arrange(desc(total_deal)) %>%
          print(n = Inf)
@@ -201,10 +195,10 @@ df4 <- origins %>%
 ```{r}
 df5 <- df4 %>% 
         select(investor_origin.x, investment_stage) %>% 
-        filter(investor_origin.x != 'NA') %>%
         group_by(investment_stage, investor_origin.x) %>%
         summarise(count = n()) %>%
-        arrange(desc(count))
+        arrange(desc(count)) %>%
+        slice_max(count, n = 10)
 ```
 
 ```{r}
@@ -221,7 +215,6 @@ df6 <- investors %>%
         group_by(investor) %>%
         summarise(count = n()) %>%
         arrange(desc(count)) %>%
-        ungroup() %>%
         slice_max(count, n = 5)
 ```
 

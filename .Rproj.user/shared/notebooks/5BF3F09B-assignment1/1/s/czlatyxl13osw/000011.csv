@@ -1,0 +1,7 @@
+"0","df0 %>%"
+"0","  ggplot(aes(x = """", y = total_deal, fill= investment_stage)) +"
+"0","  geom_bar(stat=""identity"", width=1) +"
+"0","  coord_polar(""y"", start=0) +"
+"0","  labs(title = ""Deal(USD) by Investment Stage"") +"
+"0","  xlab("""") +"
+"0","  ylab("""")"

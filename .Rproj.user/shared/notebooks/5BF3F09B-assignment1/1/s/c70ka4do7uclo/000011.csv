@@ -1,0 +1,6 @@
+"0","df5 <- df4 %>% "
+"0","        select(investor_origin.x, investment_stage) %>% "
+"0","        filter(investor_origin.x != 'NA') %>%"
+"0","        group_by(investment_stage, investor_origin.x) %>%"
+"0","        summarise(count = n()) %>%"
+"0","        arrange(desc(count))"
