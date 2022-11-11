@@ -1,0 +1,17 @@
+"0","data %>% group_by(`Investment Stage`) %>% 
+      summarise(total, sum(`Deal Value (USD)`))
+"
+"1","[1m[33mError[39m in `summarise()`:[22m
+[38;5;232m[33m![38;5;232m Problem while computing `..1 = total`.
+[36mℹ[38;5;232m The error occurred in group 1: Investment Stage = ""Acquisition"".[39m
+[1mCaused by error in `mask$eval_all_summarise()`:[22m
+[33m![39m object 'total' not found
+Backtrace:
+[90m 1. [39mdata %>% group_by(`Investment Stage`) %>% ...
+[90m 3. [39m[1m[94mdplyr:::summarise.grouped_df([39m[22m., total, sum(`Deal Value (USD)`)[1m[94m)[39m[22m
+[90m 4. [39mdplyr:::summarise_cols(.data, dplyr_quosures(...), caller_env = caller_env())
+[90m 6. [39mdplyr:::map(quosures, summarise_eval_one, mask = mask)
+[90m 7. [39m[1mbase[22m::lapply(.x, .f, ...)
+[90m 8. [39m[1mdplyr[22m (local) FUN(X[[i]], ...)
+[90m 9. [39mmask$eval_all_summarise(quo)
+"

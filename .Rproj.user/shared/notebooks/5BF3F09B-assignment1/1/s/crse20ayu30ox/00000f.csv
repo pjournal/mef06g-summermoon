@@ -1,0 +1,1 @@
+"0","deals$stake<-as.numeric(sub(""%"","""",deals$stake))"

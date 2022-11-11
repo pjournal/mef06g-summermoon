@@ -1,0 +1,6 @@
+"0","data %>% filter(InvestmentStage != ""Acquisition"") %>% 
+"
+"2","Error: unexpected symbol in:
+""         summarise(total = sum(DealValue))
+data""
+"
