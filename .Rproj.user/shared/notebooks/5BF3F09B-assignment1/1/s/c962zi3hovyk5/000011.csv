@@ -4,5 +4,7 @@
 "0","library(tidyr)"
 "0","library(ggplot2)"
 "0","library(stringi)"
+"0","library(hrbrthemes)"
+"0","library(viridis)"
 "0",""
 "0","options(dplyr.summarise.inform = FALSE)"
