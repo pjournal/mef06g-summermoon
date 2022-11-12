@@ -27,6 +27,7 @@ library(ggplot2)
 library(stringi)
 library(hrbrthemes)
 library(viridis)
+library(scales)
 
 options(dplyr.summarise.inform = FALSE)
 ```
@@ -158,7 +159,7 @@ df1 %>%
 
 ```{r}
 df1 %>% 
-  pivot_wider(names_from = investment_stage, values_from = total_deal)
+  pivot_wider(names_from = investment_stage, values_from = total_deal, values_fill = 0)
 ```
 
 ```{r}
@@ -237,8 +238,9 @@ df6 <- investors %>%
 
 ```{r}
 df6 %>%
-  ggplot(aes(x = "", y = count, fill= investor)) +
+  ggplot(aes(x = 1, y = count, fill= reorder(investor, -count))) +
   geom_bar(stat="identity", width=1) +
+  guides(fill = guide_legend(title = "Investor"))+
   coord_polar("y", start=0) +
         labs(title = "Top 5 Investor") +
         xlab("") +
