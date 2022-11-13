@@ -41,15 +41,10 @@ deals<-read_excel("docs/startup_deals_2021.xlsx")
 Let's change the column names and look at the summary.
 
 ```{r}
-deals<-rename(deals,target_company=`Target Company`)
-deals<-rename(deals,announcement_date=`Announcement Date`)
-deals<-rename(deals,financial_investor=`Financial Investor`)
-deals<-rename(deals,investor_origin=`Investor's Origin`)
-deals<-rename(deals,stake=`Stake (%)`)
-deals<-rename(deals,deal_value=`Deal Value (USD)`)
-deals<-rename(deals,investment_stage=`Investment Stage`)
-deals<-rename(deals,sector=`Sector`)
-deals<-rename(deals,investor=`Investor`)
+new_cols <- c("ID","target_company","sector","investor","announcement_date","financial_investor"
+              ,"investor_origin","stake","deal_value","investment_stage")
+
+colnames(deals) <- new_cols
 ```
 
 Changing the class of "Announcement Data" column from character to date. Use built-in function -\> "my" function from lubridate library.
@@ -113,10 +108,80 @@ investors <- deals %>% select(ID, investor)
 ```
 
 ```{r}
-investors <- separate_rows(investors, investor, sep = ",")
+investors <- separate_rows(investors, investor, sep = ", ")
 ```
 
 ## EDA (Exploratory Data Analysis)
+
+
+Firstly we look at total deal value by sector
+
+```{r}
+  deals %>%
+    filter(deal_value != 0) %>%
+    group_by(sector) %>%  
+    dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+    arrange(desc(total_deal_value)) %>%
+    top_n(5)  %>%
+    ggplot(aes(fill = sector, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(sector, -total_deal_value)) ) + 
+    geom_bar(position="stack", stat = "identity") +
+    labs(title = "Top 5 Sectors Receiving Most Investments And Number of Investments") +
+    xlab("Sector") +
+    ylab("Deal(USD)") +
+    geom_text(aes(label = nb_of_investment), vjust = - 1) 
+```
+
+Number of investors by each sector 
+
+```{r}
+  df_investor_by_sector = deals %>%
+      select(ID, target_company, sector) %>%
+      full_join(investors, by = "ID") %>%
+        group_by(sector) %>%  
+      dplyr::summarise(nb_of_investors = n_distinct(investor)) %>%
+                       arrange(desc(nb_of_investors))
+
+  df_dealvalue_by_sector = deals %>%
+    group_by(sector) %>%  
+     dplyr::summarise(total_deal_value = sum(deal_value)) %>%
+    arrange(desc(total_deal_value))  
+
+
+  inner_join(df_investor_by_sector, df_dealvalue_by_sector, by="sector") %>% top_n(40)
+
+```
+
+
+
+In this part we are looking at the top 10 companies which have recieved biggest investment and number of investment 
+
+```{r}
+deals %>%
+  filter(deal_value != 0) %>%
+  group_by(target_company) %>%  
+  dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+  arrange(desc(total_deal_value)) %>%
+  top_n(10)  %>%
+  ggplot(aes(fill = target_company, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(target_company, -total_deal_value)) ) + 
+    geom_bar(position="stack", stat = "identity") +
+    labs(title = "Top 10 Companies Receiving Most Investments And Number of Investments") +
+    xlab("Target Company") +
+    ylab("Deal(USD)") +
+      geom_text(aes(label = nb_of_investment), vjust = - 1) 
+```
+
+Investors who invested diffirent sectors and number of sectors they invested for top 20 
+
+```{r}
+deals %>%
+    select(ID, target_company, sector) %>%
+    full_join(investors, by = "ID") %>%
+     group_by(investor) %>%  
+     dplyr::summarise(nb_of_sector = n_distinct(sector)) %>%
+     arrange(desc(nb_of_sector)) %>%
+      top_n(20)
+```
+
 
 The chart gives information about how much dollars was invested on start-ups in 2011.
 
