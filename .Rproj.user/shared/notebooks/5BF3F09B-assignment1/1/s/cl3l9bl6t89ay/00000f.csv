@@ -1,0 +1,8 @@
+"0","df6 %>%"
+"0","  ggplot(aes(x = 1, y = count, fill= reorder(investor, -count))) +"
+"0","  geom_bar(stat=""identity"", width=1) +"
+"0","  guides(fill = guide_legend(title = ""Investor""))+"
+"0","  coord_polar(""y"", start=0) +"
+"0","        labs(title = ""Top 5 Investor"") +"
+"0","        xlab("""") +"
+"0","        ylab("""")"
