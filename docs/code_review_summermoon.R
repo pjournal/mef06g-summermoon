@@ -158,7 +158,7 @@ deals %>%
       top_n(20)
 
 
-df_dealvalue_by_sector = deals %>%
+df_dealvalue_by_sector <- deals %>%
   group_by(sector) %>%  
   dplyr::summarise(total_deal_value = sum(deal_value)) %>%
   arrange(desc(total_deal_value))  
