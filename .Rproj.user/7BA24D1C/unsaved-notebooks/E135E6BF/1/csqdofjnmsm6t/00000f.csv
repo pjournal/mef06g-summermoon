@@ -1,0 +1,6 @@
+"0","df2 %>% ggplot(aes(x = reorder(sector, -total_deal), y = total_deal, fill = investment_stage)) +"
+"0","        geom_bar(stat = ""identity"") + "
+"0","        theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +"
+"0","        labs(title = ""Deal(USD) by Sector & Investment Stage"") +"
+"0","        xlab("""") +"
+"0","        ylab(""Deal(USD)"")"

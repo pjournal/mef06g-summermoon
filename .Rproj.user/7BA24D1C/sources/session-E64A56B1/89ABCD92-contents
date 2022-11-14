@@ -1,6 +1,6 @@
 ---
 title: "Assignment 1"
-date: "2022-11-14"
+date: "2022-11-13"
 date-format: "MMM D, YYYY"
 format: 
   html:
@@ -30,7 +30,6 @@ library(viridis)
 library(scales)
 
 options(dplyr.summarise.inform = FALSE)
-
 ```
 
 Reading xls file:
@@ -42,16 +41,21 @@ deals<-read_excel("docs/startup_deals_2021.xlsx")
 Let's change the column names and look at the summary.
 
 ```{r}
-new_cols <- c("ID","target_company","sector","investor","announcement_date","financial_investor"
-              ,"investor_origin","stake","deal_value","investment_stage")
-
-colnames(deals) <- new_cols
+deals<-rename(deals,target_company=`Target Company`)
+deals<-rename(deals,announcement_date=`Announcement Date`)
+deals<-rename(deals,financial_investor=`Financial Investor`)
+deals<-rename(deals,investor_origin=`Investor's Origin`)
+deals<-rename(deals,stake=`Stake (%)`)
+deals<-rename(deals,deal_value=`Deal Value (USD)`)
+deals<-rename(deals,investment_stage=`Investment Stage`)
+deals<-rename(deals,sector=`Sector`)
+deals<-rename(deals,investor=`Investor`)
 ```
 
 Changing the class of "Announcement Data" column from character to date. Use built-in function -\> "my" function from lubridate library.
 
 ```{r}
-deals$announcement_date<-my(deals$announcement_date)
+deals$announcement_date<-my(deals$announcement_date)  
 ```
 
 Changing the class of "Stake (%)" from character to numeric. First erasing "%" character, dividing by 100 and then converting the numeric.
@@ -66,7 +70,7 @@ Changing the class of "Deal Value (USD)" from character to numeric.
 deals$deal_value<-as.numeric(deals$deal_value)
 ```
 
-Let's fix the wrong values in column 'Sector'.
+Let's fix the wrong values in column 'Sector'
 
 ```{r}
 deals$sector[deals$sector == 'Telecpm'] <- 'Telecom'
@@ -109,7 +113,7 @@ investors <- deals %>% select(ID, investor)
 ```
 
 ```{r}
-investors <- separate_rows(investors, investor, sep = ", ")
+investors <- separate_rows(investors, investor, sep = ",")
 ```
 
 ## EDA (Exploratory Data Analysis)
@@ -125,7 +129,7 @@ df0 <- deals %>%
        mutate(deal_perc = scales::percent(round(total_deal / sum(total_deal), 2)))
 ```
 
-```{r}
+```{r, warning=FALSE}
 df0 %>%
   ggplot(aes(x = "", y = deal_perc, fill= investment_stage)) +
   geom_bar(stat="identity", width=1) +
@@ -169,24 +173,6 @@ df1 %>%
   pivot_wider(names_from = investment_stage, values_from = total_deal, values_fill = 0)
 ```
 
-We look at total deal value by sector.
-
-```{r}
-  deals %>%
-    filter(deal_value != 0) %>%
-    group_by(sector) %>%  
-    dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
-    arrange(desc(total_deal_value)) %>%
-    top_n(10)  %>%
-    ggplot(aes(fill = sector, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(sector, -total_deal_value)) ) + 
-    geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
-    theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
-    labs(title = "Top 10 Deal(USD) by Sector") +
-    xlab("") +
-    ylab("Deal(USD)") +
-    geom_text(aes(label = nb_of_investment), vjust = - 1)
-```
-
 The chart gives information about how much investment has been made on sectors. Early VC Stage investments have been distributed over many sectors while Later VC Stage investments have been dominated in Delivery&Logistics sector.
 
 ```{r}
@@ -217,43 +203,6 @@ deals %>% filter(investment_stage != "Acquisition") %>%
          top_n(10, total_deal) %>%
          arrange(desc(total_deal)) %>%
          print(n = Inf)
-```
-
-In this part we are looking at the top 10 companies which have received biggest investment and number of investment.
-
-```{r}
-deals %>%
-  filter(deal_value != 0) %>%
-  group_by(target_company) %>%  
-  dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
-  arrange(desc(total_deal_value)) %>%
-  top_n(10)  %>%
-  ggplot(aes(fill = target_company, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(target_company, -total_deal_value)) ) + 
-    geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
-    theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
-    labs(title = "Top 10 Deal(USD) by Company") +
-    xlab("") +
-    ylab("Deal(USD)") +
-      geom_text(aes(label = nb_of_investment), vjust = - 1)
-```
-
-Number of investors by each sector.
-
-```{r}
-  df_investor_by_sector = deals %>%
-      select(ID, target_company, sector) %>%
-      full_join(investors, by = "ID") %>%
-        group_by(sector) %>%  
-      dplyr::summarise(nb_of_investors = n_distinct(investor)) %>%
-                       arrange(desc(nb_of_investors))
-
-  df_dealvalue_by_sector = deals %>%
-    group_by(sector) %>%  
-     dplyr::summarise(total_deal_value = sum(deal_value)) %>%
-    arrange(desc(total_deal_value))  
-
-
-  inner_join(df_investor_by_sector, df_dealvalue_by_sector, by="sector") %>% top_n(40)
 ```
 
 The graph displays how investor counts change over months as well as point sizes show deal volumes. Investor counts on Seed Stage investments are higher than all other stages. However deal volumes at this stage are lower than the other ones.
@@ -318,17 +267,3 @@ df6 %>%
         xlab("") +
         ylab("")
 ```
-
-Investors who invested different sectors and number of sectors they invested for top 20.
-
-```{r}
-deals %>%
-    select(ID, target_company, sector) %>%
-    full_join(investors, by = "ID") %>%
-     group_by(investor) %>%  
-     dplyr::summarise(nb_of_sector = n_distinct(sector)) %>%
-     arrange(desc(nb_of_sector)) %>%
-      top_n(20)
-```
-
-## CONCLUSION

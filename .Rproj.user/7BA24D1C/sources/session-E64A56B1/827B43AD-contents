@@ -1,6 +1,6 @@
 ---
 title: "Assignment 1"
-date: "2022-11-14"
+date: "2022-11-13"
 date-format: "MMM D, YYYY"
 format: 
   html:
@@ -30,7 +30,6 @@ library(viridis)
 library(scales)
 
 options(dplyr.summarise.inform = FALSE)
-
 ```
 
 Reading xls file:
@@ -51,7 +50,7 @@ colnames(deals) <- new_cols
 Changing the class of "Announcement Data" column from character to date. Use built-in function -\> "my" function from lubridate library.
 
 ```{r}
-deals$announcement_date<-my(deals$announcement_date)
+deals$announcement_date<-my(deals$announcement_date)  
 ```
 
 Changing the class of "Stake (%)" from character to numeric. First erasing "%" character, dividing by 100 and then converting the numeric.
@@ -66,7 +65,7 @@ Changing the class of "Deal Value (USD)" from character to numeric.
 deals$deal_value<-as.numeric(deals$deal_value)
 ```
 
-Let's fix the wrong values in column 'Sector'.
+Let's fix the wrong values in column 'Sector'
 
 ```{r}
 deals$sector[deals$sector == 'Telecpm'] <- 'Telecom'
@@ -125,7 +124,7 @@ df0 <- deals %>%
        mutate(deal_perc = scales::percent(round(total_deal / sum(total_deal), 2)))
 ```
 
-```{r}
+```{r, warning=FALSE}
 df0 %>%
   ggplot(aes(x = "", y = deal_perc, fill= investment_stage)) +
   geom_bar(stat="identity", width=1) +
@@ -181,10 +180,11 @@ We look at total deal value by sector.
     ggplot(aes(fill = sector, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(sector, -total_deal_value)) ) + 
     geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
     theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
-    labs(title = "Top 10 Deal(USD) by Sector") +
-    xlab("") +
+    labs(title = "Top 10 Deal Value by Sector") +
+    xlab("Sector") +
     ylab("Deal(USD)") +
-    geom_text(aes(label = nb_of_investment), vjust = - 1)
+    geom_text(aes(label = nb_of_investment), vjust = - 1) 
+
 ```
 
 The chart gives information about how much investment has been made on sectors. Early VC Stage investments have been distributed over many sectors while Later VC Stage investments have been dominated in Delivery&Logistics sector.
@@ -229,10 +229,9 @@ deals %>%
   arrange(desc(total_deal_value)) %>%
   top_n(10)  %>%
   ggplot(aes(fill = target_company, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(target_company, -total_deal_value)) ) + 
-    geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
-    theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
-    labs(title = "Top 10 Deal(USD) by Company") +
-    xlab("") +
+    geom_bar(position="stack", stat = "identity") +
+    labs(title = "Top 10 Deal Value by Company") +
+    xlab("Target Company") +
     ylab("Deal(USD)") +
       geom_text(aes(label = nb_of_investment), vjust = - 1)
 ```
@@ -330,5 +329,3 @@ deals %>%
      arrange(desc(nb_of_sector)) %>%
       top_n(20)
 ```
-
-## CONCLUSION
