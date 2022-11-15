@@ -1,0 +1,512 @@
+legend.position="none",
+plot.title = element_text(size=14),
+panel.grid = element_blank()
+) +
+scale_x_date(date_breaks="1 month", date_labels="%b") +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Monthly Deal(USD) by Investment Stage") +
+xlab("Announcement Date") +
+ylab("Deal(USD)") +
+facet_wrap(~investment_stage)
+df1 %>%
+pivot_wider(names_from = investment_stage, values_from = total_deal, values_fill = 0)
+deals %>% filter(investment_stage != "Acquisition") %>%
+group_by(target_company, sector) %>%
+summarise(total_deal = sum(deal_value), total_inv_count = sum(inv_count)) %>%
+ungroup() %>%
+top_n(10, total_deal) %>%
+arrange(desc(total_deal)) %>%
+print(n = Inf)
+deals %>%
+filter(deal_value != 0) %>%
+group_by(target_company) %>%
+dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value)) %>%
+top_n(10)  %>%
+ggplot(aes(fill = target_company, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(target_company, -total_deal_value)) ) +
+geom_bar(position="stack", stat = "identity") +
+labs(title = "Top 10 Companies Receiving Most Investments And Number of Investments") +
+xlab("Target Company") +
+ylab("Deal(USD)") +
+geom_text(aes(label = nb_of_investment), vjust = - 1)
+df_investor_by_sector = deals %>%
+select(ID, target_company, sector) %>%
+full_join(investors, by = "ID") %>%
+group_by(sector) %>%
+dplyr::summarise(nb_of_investors = n_distinct(investor)) %>%
+arrange(desc(nb_of_investors))
+df_dealvalue_by_sector = deals %>%
+group_by(sector) %>%
+dplyr::summarise(total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value))
+inner_join(df_investor_by_sector, df_dealvalue_by_sector, by="sector") %>% top_n(40)
+df3 <- deals %>% group_by(investment_stage, announcement_date) %>%
+summarise(total_inv_cnt = sum(inv_count), total_deal = sum(deal_value))
+df3 %>% ggplot(aes(x = announcement_date, y = total_inv_cnt, color = investment_stage)) +
+geom_point(aes(size = total_deal)) +
+scale_x_date(date_breaks="1 month", date_labels="%b") +
+labs(title = "Monthly Number of Investors by Investment Stage") +
+xlab("Announcement Date") +
+ylab("Number of Investors")
+df5 <- df4 %>%
+select(investor_origin.x, investment_stage) %>%
+filter(investor_origin.x != 'NA') %>%
+group_by(investment_stage, investor_origin.x) %>%
+summarise(count = n()) %>%
+arrange(desc(count))
+df6 %>%
+ggplot(aes(x = 1, y = count, fill= reorder(investor, -count))) +
+geom_bar(stat="identity", width=1) +
+guides(fill = guide_legend(title = "Investor"))+
+coord_polar("y", start=0) +
+labs(title = "Top 5 Investor") +
+xlab("") +
+ylab("")
+deals %>%
+select(ID, target_company, sector) %>%
+full_join(investors, by = "ID") %>%
+group_by(investor) %>%
+dplyr::summarise(nb_of_sector = n_distinct(sector)) %>%
+arrange(desc(nb_of_sector)) %>%
+top_n(20)
+library(dplyr)
+library(readxl)
+library(lubridate)
+library(tidyr)
+library(ggplot2)
+library(stringi)
+library(hrbrthemes)
+library(viridis)
+library(scales)
+options(dplyr.summarise.inform = FALSE)
+deals<-read_excel("docs/startup_deals_2021.xlsx")
+new_cols <- c("ID","target_company","sector","investor","announcement_date","financial_investor"
+,"investor_origin","stake","deal_value","investment_stage")
+colnames(deals) <- new_cols
+deals$announcement_date<-my(deals$announcement_date)
+deals$stake<-as.numeric(sub("%","",deals$stake))
+deals$deal_value<-as.numeric(deals$deal_value)
+deals$sector[deals$sector == 'Telecpm'] <- 'Telecom'
+deals$sector[deals$sector == 'Cybersec urity'] <- 'Cybersecurity'
+deals$sector[deals$sector == 'B lockchain'] <- 'Blockchain'
+deals$sector[deals$sector == 'Artificial intelligence'] <- 'Artificial Intelligence'
+deals$sector[deals$sector == 'Diğital Comparison'] <- 'Digital Comparison'
+deals$sector[deals$sector == 'I mage process'] <- 'Image process'
+deals$org_count <- lengths(strsplit(deals$investor_origin, ","))
+deals$inv_count <- lengths(strsplit(deals$investor, ","))
+deals <- deals %>% mutate(deal_value = ifelse(is.na(deal_value), 0, deal_value))
+glimpse(deals)
+origins <- deals %>% select(ID, investor_origin)
+origins <- separate_rows(origins, investor_origin, sep = ", ")
+investors <- deals %>% select(ID, investor)
+investors <- separate_rows(investors, investor, sep = ", ")
+df0 <- deals %>%
+group_by(investment_stage) %>%
+summarise(count = n(), total_deal = sum(deal_value)) %>%
+mutate(deal_perc = scales::percent(round(total_deal / sum(total_deal), 2)))
+df0 %>%
+ggplot(aes(x = "", y = deal_perc, fill= investment_stage)) +
+geom_bar(stat="identity", width=1) +
+geom_text(aes(label = deal_perc),
+position = position_stack(vjust = 0.5)) +
+coord_polar("y", start=0) +
+labs(title = "Total Deal(USD) by Investment Stage") +
+xlab("") +
+ylab("")
+df1 <- deals %>% group_by(announcement_date, investment_stage) %>%
+summarise(total_deal = sum(deal_value))
+df1 %>%
+ggplot( aes(x=announcement_date, y=total_deal)) +
+geom_line( aes(color=investment_stage), color="#69b3a2", size=1.2 )+
+scale_color_viridis(discrete = TRUE) +
+theme(
+legend.position="none",
+plot.title = element_text(size=14),
+panel.grid = element_blank()
+) +
+scale_x_date(date_breaks="1 month", date_labels="%b") +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Monthly Deal(USD) by Investment Stage") +
+xlab("Announcement Date") +
+ylab("Deal(USD)") +
+facet_wrap(~investment_stage)
+df1 %>%
+pivot_wider(names_from = investment_stage, values_from = total_deal, values_fill = 0)
+df1 %>%
+pivot_wider(names_from = investment_stage, values_from = total_deal, values_fill = 0)
+deals %>%
+filter(deal_value != 0) %>%
+group_by(sector) %>%
+dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value)) %>%
+top_n(10)  %>%
+ggplot(aes(fill = sector, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(sector, -total_deal_value)) ) +
+geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Top 10 Deal Value by Sector") +
+xlab("Sector") +
+ylab("Deal(USD)") +
+geom_text(aes(label = nb_of_investment), vjust = - 1)
+df2 <- deals %>% filter(investment_stage != "Acquisition") %>%
+group_by(investment_stage, sector) %>%
+summarise(total_deal = sum(deal_value)) %>%
+ungroup() %>%
+top_n(20, total_deal) %>%
+arrange(desc(total_deal))
+df2 %>% ggplot(aes(x = reorder(sector, -total_deal), y = total_deal, fill = investment_stage)) +
+geom_bar(stat = "identity") +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Deal(USD) by Sector & Investment Stage") +
+xlab("") +
+ylab("Deal(USD)")
+df2 %>% ggplot(aes(x = reorder(sector, -total_deal), y = total_deal, fill = investment_stage)) +
+geom_bar(stat = "identity") +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Deal(USD) by Sector & Investment Stage") +
+xlab("") +
+ylab("Deal(USD)")
+deals %>% filter(investment_stage != "Acquisition") %>%
+group_by(target_company, sector) %>%
+summarise(total_deal = sum(deal_value), total_inv_count = sum(inv_count)) %>%
+ungroup() %>%
+top_n(10, total_deal) %>%
+arrange(desc(total_deal)) %>%
+print(n = Inf)
+deals %>%
+filter(deal_value != 0) %>%
+group_by(target_company) %>%
+dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value)) %>%
+top_n(10)  %>%
+ggplot(aes(fill = target_company, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(target_company, -total_deal_value)) ) +
+geom_bar(position="stack", stat = "identity") +
+labs(title = "Top 10 Deal Value by Company") +
+xlab("Target Company") +
+ylab("Deal(USD)") +
+geom_text(aes(label = nb_of_investment), vjust = - 1)
+deals %>%
+filter(deal_value != 0) %>%
+group_by(target_company) %>%
+dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value)) %>%
+top_n(10)  %>%
+ggplot(aes(fill = target_company, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(target_company, -total_deal_value)) ) +
+geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Top 10 Deal Value by Company") +
+xlab("Target Company") +
+ylab("Deal(USD)") +
+geom_text(aes(label = nb_of_investment), vjust = - 1)
+df_investor_by_sector = deals %>%
+select(ID, target_company, sector) %>%
+full_join(investors, by = "ID") %>%
+group_by(sector) %>%
+dplyr::summarise(nb_of_investors = n_distinct(investor)) %>%
+arrange(desc(nb_of_investors))
+df_dealvalue_by_sector = deals %>%
+group_by(sector) %>%
+dplyr::summarise(total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value))
+inner_join(df_investor_by_sector, df_dealvalue_by_sector, by="sector") %>% top_n(40)
+df3 <- deals %>% group_by(investment_stage, announcement_date) %>%
+summarise(total_inv_cnt = sum(inv_count), total_deal = sum(deal_value))
+df3 %>% ggplot(aes(x = announcement_date, y = total_inv_cnt, color = investment_stage)) +
+geom_point(aes(size = total_deal)) +
+scale_x_date(date_breaks="1 month", date_labels="%b") +
+labs(title = "Monthly Number of Investors by Investment Stage") +
+xlab("Announcement Date") +
+ylab("Number of Investors")
+df4 <- origins %>%
+inner_join(deals, by = "ID")
+df5 <- df4 %>%
+select(investor_origin.x, investment_stage) %>%
+filter(investor_origin.x != 'NA') %>%
+group_by(investment_stage, investor_origin.x) %>%
+summarise(count = n()) %>%
+arrange(desc(count))
+df5 %>% ggplot(aes(fill = investment_stage, x = investor_origin.x, y = count))  +
+geom_bar(position="fill", stat = "identity") +
+theme(axis.text.x = element_text(angle=90,vjust=1,hjust=1)) +
+labs(title = "Monthly Percentage of Deals by Investment Stage") +
+xlab("Investor Origin") +
+ylab("Percentage of Deals")
+df6 <- investors %>%
+group_by(investor) %>%
+summarise(count = n()) %>%
+arrange(desc(count)) %>%
+ungroup() %>%
+slice_max(count, n = 5)
+df6 %>%
+ggplot(aes(x = 1, y = count, fill= reorder(investor, -count))) +
+geom_bar(stat="identity", width=1) +
+guides(fill = guide_legend(title = "Investor"))+
+coord_polar("y", start=0) +
+labs(title = "Top 5 Investor") +
+xlab("") +
+ylab("")
+deals %>%
+filter(deal_value != 0) %>%
+group_by(sector) %>%
+dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value)) %>%
+top_n(10)  %>%
+ggplot(aes(fill = sector, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(sector, -total_deal_value)) ) +
+geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Top 10 Deal(USD) Value by Sector") +
+xlab("Sector") +
+ylab("Deal(USD)") +
+geom_text(aes(label = nb_of_investment), vjust = - 1)
+deals %>%
+filter(deal_value != 0) %>%
+group_by(sector) %>%
+dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value)) %>%
+top_n(10)  %>%
+ggplot(aes(fill = sector, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(sector, -total_deal_value)) ) +
+geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Top 10 Deal(USD) by Sector") +
+xlab("Sector") +
+ylab("Deal(USD)") +
+geom_text(aes(label = nb_of_investment), vjust = - 1)
+deals %>%
+filter(deal_value != 0) %>%
+group_by(target_company) %>%
+dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value)) %>%
+top_n(10)  %>%
+ggplot(aes(fill = target_company, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(target_company, -total_deal_value)) ) +
+geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Top 10 Deal(USD) by Company") +
+xlab("Target Company") +
+ylab("Deal(USD)") +
+geom_text(aes(label = nb_of_investment), vjust = - 1)
+deals %>%
+filter(deal_value != 0) %>%
+group_by(target_company) %>%
+dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value)) %>%
+top_n(10)  %>%
+ggplot(aes(fill = target_company, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(target_company, -total_deal_value)) ) +
+geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Top 10 Deal(USD) by Company") +
+xlab("Company") +
+ylab("Deal(USD)") +
+geom_text(aes(label = nb_of_investment), vjust = - 1)
+deals %>%
+filter(deal_value != 0) %>%
+group_by(target_company) %>%
+dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value)) %>%
+top_n(10)  %>%
+ggplot(aes(fill = target_company, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(target_company, -total_deal_value)) ) +
+geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Top 10 Deal(USD) by Company") +
+xlab("") +
+ylab("Deal(USD)") +
+geom_text(aes(label = nb_of_investment), vjust = - 1)
+deals %>%
+filter(deal_value != 0) %>%
+group_by(sector) %>%
+dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value)) %>%
+top_n(10)  %>%
+ggplot(aes(fill = sector, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(sector, -total_deal_value)) ) +
+geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Top 10 Deal(USD) by Sector") +
+xlab("") +
+ylab("Deal(USD)") +
+geom_text(aes(label = nb_of_investment), vjust = - 1)
+deals %>%
+select(ID, target_company, sector) %>%
+full_join(investors, by = "ID") %>%
+group_by(investor) %>%
+dplyr::summarise(nb_of_sector = n_distinct(sector)) %>%
+arrange(desc(nb_of_sector)) %>%
+top_n(20)
+file.choose()
+file.open()
+library(dplyr)
+library(readxl)
+library(lubridate)
+library(tidyr)
+library(ggplot2)
+library(stringi)
+library(hrbrthemes)
+library(viridis)
+library(scales)
+options(dplyr.summarise.inform = FALSE)
+deals<-read_excel("docs/startup_deals_2021.xlsx")
+new_cols <- c("ID","target_company","sector","investor","announcement_date","financial_investor"
+,"investor_origin","stake","deal_value","investment_stage")
+colnames(deals) <- new_cols
+deals$announcement_date<-my(deals$announcement_date)
+deals$stake<-as.numeric(sub("%","",deals$stake))
+deals$deal_value<-as.numeric(deals$deal_value)
+deals$sector[deals$sector == 'Telecpm'] <- 'Telecom'
+deals$sector[deals$sector == 'Cybersec urity'] <- 'Cybersecurity'
+deals$sector[deals$sector == 'B lockchain'] <- 'Blockchain'
+deals$sector[deals$sector == 'Artificial intelligence'] <- 'Artificial Intelligence'
+deals$sector[deals$sector == 'Diğital Comparison'] <- 'Digital Comparison'
+deals$sector[deals$sector == 'I mage process'] <- 'Image process'
+deals$org_count <- lengths(strsplit(deals$investor_origin, ","))
+deals$inv_count <- lengths(strsplit(deals$investor, ","))
+deals <- deals %>% mutate(deal_value = ifelse(is.na(deal_value), 0, deal_value))
+glimpse(deals)
+origins <- deals %>% select(ID, investor_origin)
+origins <- separate_rows(origins, investor_origin, sep = ", ")
+investors <- deals %>% select(ID, investor)
+investors <- separate_rows(investors, investor, sep = ", ")
+df0 <- deals %>%
+group_by(investment_stage) %>%
+summarise(count = n(), total_deal = sum(deal_value)) %>%
+mutate(deal_perc = scales::percent(round(total_deal / sum(total_deal), 2)))
+df0 %>%
+ggplot(aes(x = "", y = deal_perc, fill= investment_stage)) +
+geom_bar(stat="identity", width=1) +
+geom_text(aes(label = deal_perc),
+position = position_stack(vjust = 0.5)) +
+coord_polar("y", start=0) +
+labs(title = "Total Deal(USD) by Investment Stage") +
+xlab("") +
+ylab("")
+df1 <- deals %>% group_by(announcement_date, investment_stage) %>%
+summarise(total_deal = sum(deal_value))
+df1 %>%
+ggplot( aes(x=announcement_date, y=total_deal)) +
+geom_line( aes(color=investment_stage), color="#69b3a2", size=1.2 )+
+scale_color_viridis(discrete = TRUE) +
+theme(
+legend.position="none",
+plot.title = element_text(size=14),
+panel.grid = element_blank()
+) +
+scale_x_date(date_breaks="1 month", date_labels="%b") +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Monthly Deal(USD) by Investment Stage") +
+xlab("Announcement Date") +
+ylab("Deal(USD)") +
+facet_wrap(~investment_stage)
+df1 %>%
+pivot_wider(names_from = investment_stage, values_from = total_deal, values_fill = 0)
+deals %>%
+filter(deal_value != 0) %>%
+group_by(sector) %>%
+dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value)) %>%
+top_n(10)  %>%
+ggplot(aes(fill = sector, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(sector, -total_deal_value)) ) +
+geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Top 10 Deal(USD) by Sector") +
+xlab("") +
+ylab("Deal(USD)") +
+geom_text(aes(label = nb_of_investment), vjust = - 1)
+df2 <- deals %>% filter(investment_stage != "Acquisition") %>%
+group_by(investment_stage, sector) %>%
+summarise(total_deal = sum(deal_value)) %>%
+ungroup() %>%
+top_n(20, total_deal) %>%
+arrange(desc(total_deal))
+df2 %>% ggplot(aes(x = reorder(sector, -total_deal), y = total_deal, fill = investment_stage)) +
+geom_bar(stat = "identity") +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Deal(USD) by Sector & Investment Stage") +
+xlab("") +
+ylab("Deal(USD)")
+deals %>% filter(investment_stage != "Acquisition") %>%
+group_by(target_company, sector) %>%
+summarise(total_deal = sum(deal_value), total_inv_count = sum(inv_count)) %>%
+ungroup() %>%
+top_n(10, total_deal) %>%
+arrange(desc(total_deal)) %>%
+print(n = Inf)
+deals %>%
+filter(deal_value != 0) %>%
+group_by(target_company) %>%
+dplyr::summarise(nb_of_investment = n(), total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value)) %>%
+top_n(10)  %>%
+ggplot(aes(fill = target_company, y = format(total_deal_value, scientific = FALSE, big.mark = ",") , x = reorder(target_company, -total_deal_value)) ) +
+geom_bar(position="stack", stat = "identity", show.legend = FALSE) +
+theme(axis.text.x = element_text(angle=60,vjust=1,hjust=1)) +
+labs(title = "Top 10 Deal(USD) by Company") +
+xlab("") +
+ylab("Deal(USD)") +
+geom_text(aes(label = nb_of_investment), vjust = - 1)
+df_investor_by_sector = deals %>%
+select(ID, target_company, sector) %>%
+full_join(investors, by = "ID") %>%
+group_by(sector) %>%
+dplyr::summarise(nb_of_investors = n_distinct(investor)) %>%
+arrange(desc(nb_of_investors))
+df_dealvalue_by_sector = deals %>%
+group_by(sector) %>%
+dplyr::summarise(total_deal_value = sum(deal_value)) %>%
+arrange(desc(total_deal_value))
+inner_join(df_investor_by_sector, df_dealvalue_by_sector, by="sector") %>% top_n(40)
+df3 <- deals %>% group_by(investment_stage, announcement_date) %>%
+summarise(total_inv_cnt = sum(inv_count), total_deal = sum(deal_value))
+df3 %>% ggplot(aes(x = announcement_date, y = total_inv_cnt, color = investment_stage)) +
+geom_point(aes(size = total_deal)) +
+scale_x_date(date_breaks="1 month", date_labels="%b") +
+labs(title = "Monthly Number of Investors by Investment Stage") +
+xlab("Announcement Date") +
+ylab("Number of Investors")
+df4 <- origins %>%
+inner_join(deals, by = "ID")
+df5 <- df4 %>%
+select(investor_origin.x, investment_stage) %>%
+filter(investor_origin.x != 'NA') %>%
+group_by(investment_stage, investor_origin.x) %>%
+summarise(count = n()) %>%
+arrange(desc(count))
+df5 %>% ggplot(aes(fill = investment_stage, x = investor_origin.x, y = count))  +
+geom_bar(position="fill", stat = "identity") +
+theme(axis.text.x = element_text(angle=90,vjust=1,hjust=1)) +
+labs(title = "Monthly Percentage of Deals by Investment Stage") +
+xlab("Investor Origin") +
+ylab("Percentage of Deals")
+df6 <- investors %>%
+group_by(investor) %>%
+summarise(count = n()) %>%
+arrange(desc(count)) %>%
+ungroup() %>%
+slice_max(count, n = 5)
+df6 %>%
+ggplot(aes(x = 1, y = count, fill= reorder(investor, -count))) +
+geom_bar(stat="identity", width=1) +
+guides(fill = guide_legend(title = "Investor"))+
+coord_polar("y", start=0) +
+labs(title = "Top 5 Investor") +
+xlab("") +
+ylab("")
+deals %>%
+select(ID, target_company, sector) %>%
+full_join(investors, by = "ID") %>%
+group_by(investor) %>%
+dplyr::summarise(nb_of_sector = n_distinct(sector)) %>%
+arrange(desc(nb_of_sector)) %>%
+top_n(20)
+library(dplyr)
+library(readxl)
+library(lubridate)
+library(tidyr)
+library(ggplot2)
+library(stringi)
+library(hrbrthemes)
+library(viridis)
+library(scales)
+options(dplyr.summarise.inform = FALSE)
+deals %>%
+select(ID, target_company, sector) %>%
+full_join(investors, by = "ID") %>%
+group_by(investor) %>%
+dplyr::summarise(nb_of_sector = n_distinct(sector)) %>%
+arrange(desc(nb_of_sector)) %>%
+top_n(10)

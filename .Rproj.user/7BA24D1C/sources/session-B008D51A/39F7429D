@@ -1,12 +1,12 @@
 {
-    "id": "DDEB59BF",
+    "id": "39F7429D",
     "path": "~/GitHub/mef06g-summermoon/assignment1.qmd",
     "project_path": "assignment1.qmd",
     "type": "quarto_markdown",
     "hash": "0",
     "contents": "",
-    "dirty": true,
-    "created": 1668504554568.0,
+    "dirty": false,
+    "created": 1668505931719.0,
     "source_on_save": false,
     "relative_order": 1,
     "properties": {
@@ -17,16 +17,16 @@
         "Source": "Source",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "cursorPosition": "170,16",
+        "cursorPosition": "323,0",
         "scrollLine": "0",
-        "rmdVisualModeLocation": "4878:4213.5"
+        "rmdVisualModeLocation": "10949:11597"
     },
     "folds": "",
-    "lastKnownWriteTime": 1668505740,
+    "lastKnownWriteTime": 1668506044,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1668505914329,
+    "last_content_update": 1668506044937,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -240,8 +240,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">dplyr.summarise.inform =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">dplyr.summarise.inform =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Reading xls file:</p>
 <div class="cell">
@@ -569,28 +570,66 @@ $ inv_count          &lt;int&gt; 2, 1, 5, 1, 2, 1, 4, 1, 1, 4, 5, 1, 1, 1, 2, 1,
 </div>
 <p>The below table shows the number of investments for each investor.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>deals <span class="sc">%&gt;%</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(ID, target_company, sector) <span class="sc">%&gt;%</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">full_join</span>(investors, <span class="at">by =</span> <span class="st">"ID"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(investor) <span class="sc">%&gt;%</span>  </span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>     dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">nb_of_sector =</span> <span class="fu">n_distinct</span>(sector)) <span class="sc">%&gt;%</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">arrange</span>(<span class="fu">desc</span>(nb_of_sector)) <span class="sc">%&gt;%</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">top_n</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 37 × 2
-   investor                     nb_of_sector
-   &lt;chr&gt;                               &lt;int&gt;
- 1 fonbulucu.com                          15
- 2 Alesta Yatırım                         14
- 3 Keiretsu Forum                         10
- 4 TechOne                                 9
- 5 Kültepe Yatırım                         8
- 6 Lima Ventures                           6
- 7 Undisclosed Investor                    6
- 8 Actera Group                            5
- 9 Galata Business Angels (GBA)            5
-10 TR Angels                               5
-# … with 27 more rows</code></pre>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df7 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ID, target_company, sector) <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(investors, <span class="at">by =</span> <span class="st">"ID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(investor) <span class="sc">%&gt;%</span>  </span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">nb_of_sector =</span> <span class="fu">n_distinct</span>(sector)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(nb_of_sector)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">investor</th>
+<th style="text-align: right;">nb_of_sector</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">fonbulucu.com</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alesta Yatırım</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Keiretsu Forum</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TechOne</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kültepe Yatırım</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lima Ventures</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Undisclosed Investor</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Actera Group</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Galata Business Angels (GBA)</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TR Angels</td>
+<td style="text-align: right;">5</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
@@ -599,7 +638,7 @@ $ inv_count          &lt;int&gt; 2, 1, 5, 1, 2, 1, 4, 1, 1, 4, 5, 1, 1, 1, 2, 1,
 <ul>
 <li><p>We can see that the first 3 sectors with the most investments, considering the total value, are the E-commerce enabler, Delivery and Logistics and Game sectors. Trendyol and Hepsiburada are the companies that receive the most investment, accounting for 58% of the total investment. The reason for this high rate is that the investment stage of the two companies is “Acquisition”.</p></li>
 <li><p>Although the largest number of investors is in the gaming sector, the investment amount constitutes about 6% of the total investment amount. The main reason for this is that investment stages are mostly “Seed stages”.</p></li>
-<li><p>If we look at the investments where the investor is only from Turkey, it constitutes 0.5% of the entire investment rate and mostly constitutes the investment stage as the “Seed Stage”.</p></li>
+<li><p>If we look at the investments where the investor is only from Turkey, it constitutes 5% of the entire investment rate and mostly constitutes the investment stage as the “Seed Stage”.</p></li>
 <li><p>When we look at the top 3 companies with the highest number of investors, we see that these are Getir, Dream Games and Akinon. We see that a high percentage of these investors are from outside Turkey.</p></li>
 <li><p>When we look at the companies that invest in more than one sector, we see that these companies are mostly Turkish companies.</p></li>
 <li><p>Finally, although we do not have data from previous years, we think that the pandemic has also affected the sectors invested in in 2021. We see that the E-commerce enabler, Delivery and Logistics sectors have grown significantly with the pandemic.</p></li>

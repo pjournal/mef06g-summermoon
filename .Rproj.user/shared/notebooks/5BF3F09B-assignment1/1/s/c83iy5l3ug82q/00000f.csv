@@ -1,8 +1,0 @@
-"0","deals %>%"
-"0","    select(ID, target_company, sector) %>%"
-"0","    full_join(investors, by = ""ID"") %>%"
-"0","     group_by(investor) %>%  "
-"0","     dplyr::summarise(nb_of_sector = n_distinct(sector)) %>%"
-"0","     arrange(desc(nb_of_sector)) %>%"
-"0","      top_n(20)"
-"2","Selecting by nb_of_sector"

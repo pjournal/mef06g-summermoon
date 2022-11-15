@@ -28,6 +28,7 @@ library(stringi)
 library(hrbrthemes)
 library(viridis)
 library(scales)
+library(knitr)
 
 options(dplyr.summarise.inform = FALSE)
 ```
@@ -166,6 +167,8 @@ The pivot table shows the detailed version of the graph below.
 ```{r}
 df1 %>% 
   pivot_wider(names_from = investment_stage, values_from = total_deal, values_fill = 0)
+
+knitr::kable(df1)
 ```
 
 The below chart shows the total investment values for the top 10 sectors and the number of investments at different times.
@@ -321,13 +324,15 @@ df6 %>%
 The below table shows the number of investments for each investor.
 
 ```{r}
-deals %>%
-    select(ID, target_company, sector) %>%
-    full_join(investors, by = "ID") %>%
-     group_by(investor) %>%  
-     dplyr::summarise(nb_of_sector = n_distinct(sector)) %>%
-     arrange(desc(nb_of_sector)) %>%
-      top_n(20)
+df7 <- deals %>%
+  select(ID, target_company, sector) %>%
+  full_join(investors, by = "ID") %>%
+  group_by(investor) %>%  
+  dplyr::summarise(nb_of_sector = n_distinct(sector)) %>%
+  arrange(desc(nb_of_sector)) %>%
+  top_n(10)
+
+knitr::kable(df7)
 ```
 
 ## CONCLUSION
@@ -336,7 +341,7 @@ deals %>%
 
 -   Although the largest number of investors is in the gaming sector, the investment amount constitutes about 6% of the total investment amount. The main reason for this is that investment stages are mostly "Seed stages".
 
--   If we look at the investments where the investor is only from Turkey, it constitutes 0.5% of the entire investment rate and mostly constitutes the investment stage as the "Seed Stage".
+-   If we look at the investments where the investor is only from Turkey, it constitutes 5% of the entire investment rate and mostly constitutes the investment stage as the "Seed Stage".
 
 -   When we look at the top 3 companies with the highest number of investors, we see that these are Getir, Dream Games and Akinon. We see that a high percentage of these investors are from outside Turkey.
 
