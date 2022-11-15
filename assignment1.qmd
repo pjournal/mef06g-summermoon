@@ -169,7 +169,7 @@ df1 %>%
   pivot_wider(names_from = investment_stage, values_from = total_deal, values_fill = 0)
 ```
 
-We look at total deal value by sector.
+The below chart shows the total investment values for the top 10 sectors and the number of investments at different times.
 
 ```{r}
   deals %>%
@@ -219,7 +219,7 @@ deals %>% filter(investment_stage != "Acquisition") %>%
          print(n = Inf)
 ```
 
-In this part we are looking at the top 10 companies which have received biggest investment and number of investment.
+In this chart shows the top 10 companies with the highest investment value in 2021 and the number of investments at different times. Explicitly seen that the top 3 companies that received the most investment are online marketing.
 
 ```{r}
 deals %>%
@@ -237,7 +237,7 @@ deals %>%
       geom_text(aes(label = nb_of_investment), vjust = - 1)
 ```
 
-Number of investors by each sector.
+The below table analyzes which sectors received investment from different investors in 2021. Regardless of the total investment value, investors are attracted by **the gaming sector**. (Analyzes were made for unique investors)
 
 ```{r}
   df_investor_by_sector = deals %>%
@@ -319,7 +319,7 @@ df6 %>%
         ylab("")
 ```
 
-Investors who invested different sectors and number of sectors they invested for top 20.
+The below table shows the number of investments for each investor.
 
 ```{r}
 deals %>%
