@@ -343,4 +343,4 @@ deals %>%
 
     When we look at the companies that invest in more than one sector, we see that these companies are mostly Turkish companies.
 
-    Finally, although we do not have data from previous years, we think that the pandemic has also affected the sectors invested in in 2021. We see that the E-commerce enabler, Delivery and Logistics sectors have grown significantly with the pandemic.
+    Finally, although we do not have data from previous years, we think that the pandemic has also affected the sectors invested in in 2021. We see that the E-commerce enabler, Delivery and Logistics sectors have grown significantly with the pandemic...
