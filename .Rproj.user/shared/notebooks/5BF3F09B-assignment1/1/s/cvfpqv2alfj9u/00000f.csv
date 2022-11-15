@@ -1,0 +1,6 @@
+"0","df6 <- investors %>% "
+"0","        group_by(investor) %>%"
+"0","        summarise(count = n()) %>%"
+"0","        arrange(desc(count)) %>%"
+"0","        ungroup() %>%"
+"0","        slice_max(count, n = 5)"

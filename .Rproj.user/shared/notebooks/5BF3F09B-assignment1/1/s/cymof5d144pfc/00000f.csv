@@ -1,0 +1,6 @@
+"0","deals$sector[deals$sector == 'Telecpm'] <- 'Telecom'"
+"0","deals$sector[deals$sector == 'Cybersec urity'] <- 'Cybersecurity'"
+"0","deals$sector[deals$sector == 'B lockchain'] <- 'Blockchain'"
+"0","deals$sector[deals$sector == 'Artificial intelligence'] <- 'Artificial Intelligence'"
+"0","deals$sector[deals$sector == 'Diğital Comparison'] <- 'Digital Comparison'"
+"0","deals$sector[deals$sector == 'I mage process'] <- 'Image process'"

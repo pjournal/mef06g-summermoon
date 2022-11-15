@@ -1,0 +1,6 @@
+"0","df3 %>% ggplot(aes(x = announcement_date, y = total_inv_cnt, color = investment_stage)) + "
+"0","        geom_point(aes(size = total_deal)) +"
+"0","        scale_x_date(date_breaks=""1 month"", date_labels=""%b"") +"
+"0","        labs(title = ""Monthly Number of Investors by Investment Stage"") +"
+"0","        xlab(""Announcement Date"") +"
+"0","        ylab(""Number of Investors"")"

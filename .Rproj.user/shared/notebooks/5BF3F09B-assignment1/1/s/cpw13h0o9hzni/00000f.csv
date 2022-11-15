@@ -1,0 +1,4 @@
+"0","df0 <- deals %>% "
+"0","       group_by(investment_stage) %>% "
+"0","       summarise(count = n(), total_deal = sum(deal_value)) %>%"
+"0","       mutate(deal_perc = scales::percent(round(total_deal / sum(total_deal), 2)))"

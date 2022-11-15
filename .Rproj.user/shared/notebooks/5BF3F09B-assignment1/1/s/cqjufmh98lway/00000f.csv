@@ -1,0 +1,1 @@
+"0","investors <- deals %>% select(ID, investor)"

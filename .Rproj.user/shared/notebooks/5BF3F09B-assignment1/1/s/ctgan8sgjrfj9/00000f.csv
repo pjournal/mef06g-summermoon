@@ -1,0 +1,2 @@
+"0","df3 <- deals %>% group_by(investment_stage, announcement_date) %>%"
+"0","          summarise(total_inv_cnt = sum(inv_count), total_deal = sum(deal_value))"

@@ -389,7 +389,7 @@ $ inv_count          &lt;int&gt; 2, 1, 5, 1, 2, 1, 4, 1, 1, 4, 5, 1, 1, 1, 2, 1,
 12 2021-12-01           61905000        36200000      12385295                0</code></pre>
 </div>
 </div>
-<p>We look at total deal value by sector.</p>
+<p>The below chart shows the total investment values for the top 10 sectors and the number of investments at different times.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>  deals <span class="sc">%&gt;%</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(deal_value <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
@@ -453,7 +453,7 @@ $ inv_count          &lt;int&gt; 2, 1, 5, 1, 2, 1, 4, 1, 1, 4, 5, 1, 1, 1, 2, 1,
 10 Brew Games     Gaming                  4000000               1</code></pre>
 </div>
 </div>
-<p>In this part we are looking at the top 10 companies which have received biggest investment and number of investment.</p>
+<p>In this chart shows the top 10 companies with the highest investment value in 2021 and the number of investments at different times. Explicitly seen that the top 3 companies that received the most investment are online marketing.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>deals <span class="sc">%&gt;%</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(deal_value <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
@@ -472,7 +472,7 @@ $ inv_count          &lt;int&gt; 2, 1, 5, 1, 2, 1, 4, 1, 1, 4, 5, 1, 1, 1, 2, 1,
 <p><img src="assignment1_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Number of investors by each sector.</p>
+<p>The below table analyzes which sectors received investment from different investors in 2021. Regardless of the total investment value, investors are attracted by <strong>the gaming sector</strong>. (Analyzes were made for unique investors.)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>  df_investor_by_sector <span class="ot">=</span> deals <span class="sc">%&gt;%</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(ID, target_company, sector) <span class="sc">%&gt;%</span></span>
@@ -567,7 +567,7 @@ $ inv_count          &lt;int&gt; 2, 1, 5, 1, 2, 1, 4, 1, 1, 4, 5, 1, 1, 1, 2, 1,
 <p><img src="assignment1_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Investors who invested different sectors and number of sectors they invested for top 20.</p>
+<p>The below table shows the number of investments for each investor.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>deals <span class="sc">%&gt;%</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(ID, target_company, sector) <span class="sc">%&gt;%</span></span>
@@ -596,6 +596,14 @@ $ inv_count          &lt;int&gt; 2, 1, 5, 1, 2, 1, 4, 1, 1, 4, 5, 1, 1, 1, 2, 1,
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">CONCLUSION</h2>
+<ul>
+<li><p>We can see that the first 3 sectors with the most investments, considering the total value, are the E-commerce enabler, Delivery and Logistics and Game sectors. Trendyol and Hepsiburada are the companies that receive the most investment, accounting for 58% of the total investment. The reason for this high rate is that the investment stage of the two companies is “Acquisition”.</p></li>
+<li><p>Although the largest number of investors is in the gaming sector, the investment amount constitutes about 6% of the total investment amount. The main reason for this is that investment stages are mostly “Seed stages”.</p></li>
+<li><p>If we look at the investments where the investor is only from Turkey, it constitutes 0.5% of the entire investment rate and mostly constitutes the investment stage as the “Seed Stage”.</p></li>
+<li><p>When we look at the top 3 companies with the highest number of investors, we see that these are Getir, Dream Games and Akinon. We see that a high percentage of these investors are from outside Turkey.</p></li>
+<li><p>When we look at the companies that invest in more than one sector, we see that these companies are mostly Turkish companies.</p></li>
+<li><p>Finally, although we do not have data from previous years, we think that the pandemic has also affected the sectors invested in in 2021. We see that the E-commerce enabler, Delivery and Logistics sectors have grown significantly with the pandemic.</p></li>
+</ul>
 
 
 </section>

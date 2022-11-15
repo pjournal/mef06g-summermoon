@@ -1,0 +1,6 @@
+"0","df5 %>% ggplot(aes(fill = investment_stage, x = investor_origin.x, y = count))  + "
+"0","        geom_bar(position=""fill"", stat = ""identity"") + "
+"0","        theme(axis.text.x = element_text(angle=90,vjust=1,hjust=1)) +"
+"0","        labs(title = ""Monthly Percentage of Deals by Investment Stage"") +"
+"0","        xlab(""Investor Origin"") +"
+"0","        ylab(""Percentage of Deals"")"
