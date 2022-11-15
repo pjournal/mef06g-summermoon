@@ -237,7 +237,7 @@ deals %>%
       geom_text(aes(label = nb_of_investment), vjust = - 1)
 ```
 
-The below table analyzes which sectors received investment from different investors in 2021. Regardless of the total investment value, investors are attracted by **the gaming sector**. (Analyzes were made for unique investors)
+The below table analyzes which sectors received investment from different investors in 2021. Regardless of the total investment value, investors are attracted by **the gaming sector**. (Analyzes were made for unique investors.)
 
 ```{r}
   df_investor_by_sector = deals %>%
@@ -332,3 +332,15 @@ deals %>%
 ```
 
 ## CONCLUSION
+
+    We can see that the first 3 sectors with the most investments, considering the total value, are the E-commerce enabler, Delivery and Logistics and Game sectors. Trendyol and Hepsiburada are the companies that receive the most investment, accounting for 58% of the total investment. The reason for this high rate is that the investment stage of the two companies is “Acquisition”.
+
+    Although the largest number of investors is in the gaming sector, the investment amount constitutes about 6% of the total investment amount. The main reason for this is that investment stages are mostly “Seed stages”.
+
+    If we look at the investments where the investor is only from Turkey, it constitutes 0.5% of the entire investment rate and mostly constitutes the investment stage as the “Seed Stage”.
+
+    When we look at the top 3 companies with the highest number of investors, we see that these are Getir, Dream Games and Akinon. We see that a high percentage of these investors are from outside Turkey.
+
+    When we look at the companies that invest in more than one sector, we see that these companies are mostly Turkish companies.
+
+    Finally, although we do not have data from previous years, we think that the pandemic has also affected the sectors invested in in 2021. We see that the E-commerce enabler, Delivery and Logistics sectors have grown significantly with the pandemic.
