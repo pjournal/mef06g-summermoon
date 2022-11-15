@@ -431,7 +431,7 @@ $ inv_count          &lt;int&gt; 2, 1, 5, 1, 2, 1, 4, 1, 1, 4, 5, 1, 1, 1, 2, 1,
 </div>
 <p>Getir has reached the largest deal volume from a variety of investors. Dream Games and Akinon attracted the most investments by deal volume respectively.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>deals <span class="sc">%&gt;%</span> <span class="fu">filter</span>(investment_stage <span class="sc">!=</span> <span class="st">"Acquisition"</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df8 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">filter</span>(investment_stage <span class="sc">!=</span> <span class="st">"Acquisition"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>         <span class="fu">group_by</span>(target_company, sector) <span class="sc">%&gt;%</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">summarise</span>(<span class="at">total_deal =</span> <span class="fu">sum</span>(deal_value), <span class="at">total_inv_count =</span> <span class="fu">sum</span>(inv_count)) <span class="sc">%&gt;%</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
@@ -453,42 +453,117 @@ $ inv_count          &lt;int&gt; 2, 1, 5, 1, 2, 1, 4, 1, 1, 4, 5, 1, 1, 1, 2, 1,
  9 Yolda.com      Delivery &amp; Logistics    5000000               6
 10 Brew Games     Gaming                  4000000               1</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">target_company</th>
+<th style="text-align: left;">sector</th>
+<th style="text-align: right;">total_deal</th>
+<th style="text-align: right;">total_inv_count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Getir</td>
+<td style="text-align: left;">Delivery &amp; Logistics</td>
+<td style="text-align: right;">1.018e+09</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dream Games</td>
+<td style="text-align: left;">Gaming</td>
+<td style="text-align: right;">1.550e+08</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Akinon</td>
+<td style="text-align: left;">Ecommerce enabler</td>
+<td style="text-align: right;">2.000e+07</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Servislet</td>
+<td style="text-align: left;">Marketplace</td>
+<td style="text-align: right;">1.250e+07</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Colendi</td>
+<td style="text-align: left;">Fintech</td>
+<td style="text-align: right;">1.200e+07</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RS Research</td>
+<td style="text-align: left;">Deeptech</td>
+<td style="text-align: right;">1.200e+07</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tarfin</td>
+<td style="text-align: left;">Agritech</td>
+<td style="text-align: right;">8.000e+06</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">hadi</td>
+<td style="text-align: left;">Gaming</td>
+<td style="text-align: right;">5.200e+06</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Yolda.com</td>
+<td style="text-align: left;">Delivery &amp; Logistics</td>
+<td style="text-align: right;">5.000e+06</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brew Games</td>
+<td style="text-align: left;">Gaming</td>
+<td style="text-align: right;">4.000e+06</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <p>In this chart shows the top 10 companies with the highest investment value in 2021 and the number of investments at different times. Explicitly seen that the top 3 companies that received the most investment are online marketing.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>deals <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(deal_value <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(target_company) <span class="sc">%&gt;%</span>  </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">nb_of_investment =</span> <span class="fu">n</span>(), <span class="at">total_deal_value =</span> <span class="fu">sum</span>(deal_value)) <span class="sc">%&gt;%</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_deal_value)) <span class="sc">%&gt;%</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>)  <span class="sc">%&gt;%</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> target_company, <span class="at">y =</span> <span class="fu">format</span>(total_deal_value, <span class="at">scientific =</span> <span class="cn">FALSE</span>, <span class="at">big.mark =</span> <span class="st">","</span>) , <span class="at">x =</span> <span class="fu">reorder</span>(target_company, <span class="sc">-</span>total_deal_value)) ) <span class="sc">+</span> </span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">60</span>,<span class="at">vjust=</span><span class="dv">1</span>,<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 10 Deal(USD) by Company"</span>) <span class="sc">+</span></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Deal(USD)"</span>) <span class="sc">+</span></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> nb_of_investment), <span class="at">vjust =</span> <span class="sc">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>deals <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(deal_value <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(target_company) <span class="sc">%&gt;%</span>  </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">nb_of_investment =</span> <span class="fu">n</span>(), <span class="at">total_deal_value =</span> <span class="fu">sum</span>(deal_value)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_deal_value)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>)  <span class="sc">%&gt;%</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> target_company, <span class="at">y =</span> <span class="fu">format</span>(total_deal_value, <span class="at">scientific =</span> <span class="cn">FALSE</span>, <span class="at">big.mark =</span> <span class="st">","</span>) , <span class="at">x =</span> <span class="fu">reorder</span>(target_company, <span class="sc">-</span>total_deal_value)) ) <span class="sc">+</span> </span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">60</span>,<span class="at">vjust=</span><span class="dv">1</span>,<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 10 Deal(USD) by Company"</span>) <span class="sc">+</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Deal(USD)"</span>) <span class="sc">+</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> nb_of_investment), <span class="at">vjust =</span> <span class="sc">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="assignment1_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The below table analyzes which sectors received investment from different investors in 2021. Regardless of the total investment value, investors are attracted by <strong>the gaming sector</strong>. (Analyzes were made for unique investors.)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>  df_investor_by_sector <span class="ot">=</span> deals <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(ID, target_company, sector) <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">full_join</span>(investors, <span class="at">by =</span> <span class="st">"ID"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(sector) <span class="sc">%&gt;%</span>  </span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">nb_of_investors =</span> <span class="fu">n_distinct</span>(investor)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">arrange</span>(<span class="fu">desc</span>(nb_of_investors))</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  df_dealvalue_by_sector <span class="ot">=</span> deals <span class="sc">%&gt;%</span></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(sector) <span class="sc">%&gt;%</span>  </span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>     dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">total_deal_value =</span> <span class="fu">sum</span>(deal_value)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(total_deal_value))  </span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(df_investor_by_sector, df_dealvalue_by_sector, <span class="at">by=</span><span class="st">"sector"</span>) <span class="sc">%&gt;%</span> <span class="fu">top_n</span>(<span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>  df_investor_by_sector <span class="ot">=</span> deals <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(ID, target_company, sector) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">full_join</span>(investors, <span class="at">by =</span> <span class="st">"ID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(sector) <span class="sc">%&gt;%</span>  </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">nb_of_investors =</span> <span class="fu">n_distinct</span>(investor)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">arrange</span>(<span class="fu">desc</span>(nb_of_investors))</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  df_dealvalue_by_sector <span class="ot">=</span> deals <span class="sc">%&gt;%</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(sector) <span class="sc">%&gt;%</span>  </span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>     dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">total_deal_value =</span> <span class="fu">sum</span>(deal_value)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(total_deal_value))  </span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(df_investor_by_sector, df_dealvalue_by_sector, <span class="at">by=</span><span class="st">"sector"</span>) <span class="sc">%&gt;%</span> <span class="fu">top_n</span>(<span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 40 × 3
    sector                  nb_of_investors total_deal_value
@@ -508,77 +583,77 @@ $ inv_count          &lt;int&gt; 2, 1, 5, 1, 2, 1, 4, 1, 1, 4, 5, 1, 1, 1, 2, 1,
 </div>
 <p>The graph displays how investor counts change over months as well as point sizes show deal volumes. Investor counts on Seed Stage investments are higher than all other stages. However deal volumes at this stage are lower than the other ones.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(investment_stage, announcement_date) <span class="sc">%&gt;%</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">summarise</span>(<span class="at">total_inv_cnt =</span> <span class="fu">sum</span>(inv_count), <span class="at">total_deal =</span> <span class="fu">sum</span>(deal_value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(investment_stage, announcement_date) <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">summarise</span>(<span class="at">total_inv_cnt =</span> <span class="fu">sum</span>(inv_count), <span class="at">total_deal =</span> <span class="fu">sum</span>(deal_value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> announcement_date, <span class="at">y =</span> total_inv_cnt, <span class="at">color =</span> investment_stage)) <span class="sc">+</span> </span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> total_deal)) <span class="sc">+</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_date</span>(<span class="at">date_breaks=</span><span class="st">"1 month"</span>, <span class="at">date_labels=</span><span class="st">"%b"</span>) <span class="sc">+</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Monthly Number of Investors by Investment Stage"</span>) <span class="sc">+</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">"Announcement Date"</span>) <span class="sc">+</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">"Number of Investors"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> announcement_date, <span class="at">y =</span> total_inv_cnt, <span class="at">color =</span> investment_stage)) <span class="sc">+</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> total_deal)) <span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_date</span>(<span class="at">date_breaks=</span><span class="st">"1 month"</span>, <span class="at">date_labels=</span><span class="st">"%b"</span>) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Monthly Number of Investors by Investment Stage"</span>) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">"Announcement Date"</span>) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">"Number of Investors"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="assignment1_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The graph displays how countries’ investments vary by stages. In Turkey, highest number of deals are made at Seed Stage.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df4 <span class="ot">&lt;-</span> origins <span class="sc">%&gt;%</span> </span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(deals, <span class="at">by =</span> <span class="st">"ID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df4 <span class="ot">&lt;-</span> origins <span class="sc">%&gt;%</span> </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(deals, <span class="at">by =</span> <span class="st">"ID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df5 <span class="ot">&lt;-</span> df4 <span class="sc">%&gt;%</span> </span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(investor_origin.x, investment_stage) <span class="sc">%&gt;%</span> </span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(investor_origin.x <span class="sc">!=</span> <span class="st">'NA'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(investment_stage, investor_origin.x) <span class="sc">%&gt;%</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">arrange</span>(<span class="fu">desc</span>(count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df5 <span class="ot">&lt;-</span> df4 <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(investor_origin.x, investment_stage) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(investor_origin.x <span class="sc">!=</span> <span class="st">'NA'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(investment_stage, investor_origin.x) <span class="sc">%&gt;%</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">arrange</span>(<span class="fu">desc</span>(count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df5 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> investment_stage, <span class="at">x =</span> investor_origin.x, <span class="at">y =</span> count))  <span class="sc">+</span> </span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"fill"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>,<span class="at">vjust=</span><span class="dv">1</span>,<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Monthly Percentage of Deals by Investment Stage"</span>) <span class="sc">+</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">"Investor Origin"</span>) <span class="sc">+</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">"Percentage of Deals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df5 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> investment_stage, <span class="at">x =</span> investor_origin.x, <span class="at">y =</span> count))  <span class="sc">+</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"fill"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>,<span class="at">vjust=</span><span class="dv">1</span>,<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Monthly Percentage of Deals by Investment Stage"</span>) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">"Investor Origin"</span>) <span class="sc">+</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">"Percentage of Deals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="assignment1_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>This pie-chart illustrates top-5 investors by number of deals.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df6 <span class="ot">&lt;-</span> investors <span class="sc">%&gt;%</span> </span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(investor) <span class="sc">%&gt;%</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">arrange</span>(<span class="fu">desc</span>(count)) <span class="sc">%&gt;%</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">slice_max</span>(count, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df6 <span class="ot">&lt;-</span> investors <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(investor) <span class="sc">%&gt;%</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">arrange</span>(<span class="fu">desc</span>(count)) <span class="sc">%&gt;%</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">slice_max</span>(count, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df6 <span class="sc">%&gt;%</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> count, <span class="at">fill=</span> <span class="fu">reorder</span>(investor, <span class="sc">-</span>count))) <span class="sc">+</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Investor"</span>))<span class="sc">+</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start=</span><span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 5 Investor"</span>) <span class="sc">+</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df6 <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> count, <span class="at">fill=</span> <span class="fu">reorder</span>(investor, <span class="sc">-</span>count))) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">width=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Investor"</span>))<span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 5 Investor"</span>) <span class="sc">+</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="assignment1_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The below table shows the number of investments for each investor.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df7 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ID, target_company, sector) <span class="sc">%&gt;%</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(investors, <span class="at">by =</span> <span class="st">"ID"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(investor) <span class="sc">%&gt;%</span>  </span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">nb_of_sector =</span> <span class="fu">n_distinct</span>(sector)) <span class="sc">%&gt;%</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(nb_of_sector)) <span class="sc">%&gt;%</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>)</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df7 <span class="ot">&lt;-</span> deals <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ID, target_company, sector) <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(investors, <span class="at">by =</span> <span class="st">"ID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(investor) <span class="sc">%&gt;%</span>  </span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">nb_of_sector =</span> <span class="fu">n_distinct</span>(sector)) <span class="sc">%&gt;%</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(nb_of_sector)) <span class="sc">%&gt;%</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <thead>

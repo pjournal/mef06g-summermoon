@@ -210,13 +210,15 @@ df2 %>% ggplot(aes(x = reorder(sector, -total_deal), y = total_deal, fill = inve
 Getir has reached the largest deal volume from a variety of investors. Dream Games and Akinon attracted the most investments by deal volume respectively.
 
 ```{r}
-deals %>% filter(investment_stage != "Acquisition") %>%
+df8 <- deals %>% filter(investment_stage != "Acquisition") %>%
          group_by(target_company, sector) %>%
          summarise(total_deal = sum(deal_value), total_inv_count = sum(inv_count)) %>%
          ungroup() %>%
          top_n(10, total_deal) %>%
          arrange(desc(total_deal)) %>%
          print(n = Inf)
+
+knitr::kable(df8)
 ```
 
 In this chart shows the top 10 companies with the highest investment value in 2021 and the number of investments at different times. Explicitly seen that the top 3 companies that received the most investment are online marketing.

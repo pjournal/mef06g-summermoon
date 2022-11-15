@@ -1,4 +1,4 @@
-"0","deals %>% filter(investment_stage != ""Acquisition"") %>%"
+"0","df8 <- deals %>% filter(investment_stage != ""Acquisition"") %>%"
 "0","         group_by(target_company, sector) %>%"
 "0","         summarise(total_deal = sum(deal_value), total_inv_count = sum(inv_count)) %>%"
 "0","         ungroup() %>%"
