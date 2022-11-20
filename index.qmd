@@ -8,14 +8,12 @@ This progress journal covers SUMMER MOON's work during their term at [BDA 503 Fa
 
 ### Group Members in alfabetical order:
 
-+ [Berk Özcan](https://pjournal.github.io/mef06-berkozzcan/)  
-+ [Canseza Avağ Erdurak](https://pjournal.github.io/mef06-avagcanseza/)
-+ [Emre Çakmak](https://pjournal.github.io/mef06-cakmakem/)
-+ [Mehmet Kemal Ucuzcu](https://pjournal.github.io/mef06-mekucz/)
-+ [Nihan Cinisli Köksoy](https://pjournal.github.io/mef06-nihanck/)
+-   [Berk Özcan](https://pjournal.github.io/mef06-berkozzcan/)
+-   [Canseza Avağ Erdurak](https://pjournal.github.io/mef06-avagcanseza/)
+-   [Emre Çakmak](https://pjournal.github.io/mef06-cakmakem/)
+-   [Mehmet Kemal Ucuzcu](https://pjournal.github.io/mef06-mekucz/)
+-   [Nihan Cinisli Köksoy](https://pjournal.github.io/mef06-nihanck/)
 
-
-
-### Group Project Details: 
+### Group Project Details:
 
 Our group project is Summer Moon. It is about Population and Demography in Turkey based on TUIK data.
