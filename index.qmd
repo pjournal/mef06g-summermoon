@@ -2,22 +2,20 @@
 
 <!-- DO NOT TOUCH THIS PART EXCEPT FILLING YOUR OR YOUR GROUP's NAME -->
 
-![](docs/docs/summermoon.jpg){fig-align="center" width="290"}
+![](docs/summermoon.jpg){fig-align="center" width="290"}
 
 This progress journal covers SUMMER MOON's work during their term at [BDA 503 Fall 2022](https://mef-bda503.github.io/fall22/).
 
-Each section is an assignment or an individual work.
+### Group Members in alfabetical order:
 
-<!-- IF THIS IS A GROUP UNCOMMENT BELOW -->
++ [Berk Özcan](https://pjournal.github.io/mef06-berkozzcan/)  
++ [Canseza Avağ Erdurak](https://pjournal.github.io/mef06-avagcanseza/)
++ [Emre Çakmak](https://pjournal.github.io/mef06-cakmakem/)
++ [Mehmet Kemal Ucuzcu](https://pjournal.github.io/mef06-mekucz/)
++ [Nihan Cinisli Köksoy](https://pjournal.github.io/mef06-nihanck/)
 
-```{=html}
-<!-- # Group Members
 
-+ [Member 1](Member 1's Progress Journal URL with https://)  
-+ [Member 2](Member 2's Progress Journal URL with https://)
-+ [Member 3](Member 3's Progress Journal URL with https://)
 
-# Group Project Details
+### Group Project Details: 
 
-Our group project is [PROJECT NAME]. [SHORT DESCRIPTION] -->
-```
+Our group project is Summer Moon. It is about Population and Demography in Turkey based on TUIK data.
