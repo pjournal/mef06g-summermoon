@@ -1,9 +1,9 @@
 ---
-title: "TUIK_EXCEL_TO_RDS"
+title: "TUIK Preprocessing"
 editor: visual
 ---
 
-``` {r}
+```{r}
 library(readxl)
 library(openxlsx)
   
@@ -30,9 +30,7 @@ lapply(names(data_frame), function(x)
 names(data_frame)
 ```
 
-
 ```{r}
-#save(Employment_by_occup_group, file = "docs/tuik/Employment_by_occup_group.RData")
+# save(Employment_by_occup_group, file = "docs/tuik/Employment_by_occup_group.RData")
 
 ```
-
