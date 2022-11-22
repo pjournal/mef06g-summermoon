@@ -17,7 +17,7 @@ data_frame <- lapply(sheets, openxlsx::read.xlsx, xlsxFile=path)
 names(data_frame) <- sheets
 
 # printing the data
-print (data_frame)
+#print (data_frame)
 
 list2env(data_frame, envir = .GlobalEnv)
 
