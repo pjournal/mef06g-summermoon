@@ -1,0 +1,38 @@
+---
+title: "TUIK_EXCEL_TO_RDS"
+editor: visual
+---
+
+``` {r}
+library(readxl)
+library(openxlsx)
+  
+path <- "docs/SummerMoon - TUIK - Issizlik Dataset.xlsx"
+
+# getting data from sheets
+sheets <- openxlsx::getSheetNames(path)
+data_frame <- lapply(sheets, openxlsx::read.xlsx, xlsxFile=path)
+
+# assigning names to data frame
+names(data_frame) <- sheets
+
+# printing the data
+print (data_frame)
+
+list2env(data_frame, envir = .GlobalEnv)
+
+lapply(names(data_frame), function(x)
+  assign(x, data_frame[[x]], envir = .GlobalEnv)
+)
+```
+
+```{r}
+names(data_frame)
+```
+
+
+```{r}
+#save(Employment_by_occup_group, file = "docs/tuik/Employment_by_occup_group.RData")
+
+```
+
