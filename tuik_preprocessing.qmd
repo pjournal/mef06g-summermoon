@@ -3,7 +3,9 @@ title: "TUIK Preprocessing"
 editor: visual
 ---
 
-```{r}
+## We stored Tuik data in separate sheets in Excel, so firstly we read all sheets and store them separately in tables in R. 
+
+```{r,results='hide'}
 library(readxl)
 library(openxlsx)
   
@@ -26,11 +28,21 @@ lapply(names(data_frame), function(x)
 )
 ```
 
+## Here are our tables which we analyze later.
+
 ```{r}
 names(data_frame)
 ```
 
+## Lastly, we convert all tables into RData format and stored them in the docs folder.
+
 ```{r}
-# save(Employment_by_occup_group, file = "docs/tuik/Employment_by_occup_group.RData")
+for(p in c(seq(1, length(names(data_frame)) ,1))) { 
+  for(i in list(names(data_frame))){
+    a <- noquote(i)
+    save(a, file = paste("docs/tuik/", a[p], ".RData"))
+  }
+}
 
 ```
+
