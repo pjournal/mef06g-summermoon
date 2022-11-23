@@ -3,7 +3,9 @@ title: "TUIK Preprocessing"
 editor: visual
 ---
 
-## We stored Tuik data in separate sheets in Excel, so firstly we read all sheets and store them separately in tables in R. 
+## Creating data frames
+
+We stored Tuik data in separate sheets in Excel, so firstly we read all sheets and store them separately in tables in R.
 
 ```{r,results='hide'}
 library(readxl)
@@ -28,13 +30,19 @@ lapply(names(data_frame), function(x)
 )
 ```
 
-## Here are our tables which we analyze later.
+## Dataframes
+
+Here are our tables which we analyze later.
 
 ```{r}
 names(data_frame)
 ```
 
-## Lastly, we convert all tables into RData format and stored them in the docs folder.
+## Converting to RData
+
+Lastly, we convert all tables into RData format and stored them in the \~/docs/tuik folder.
+
+[Please click to see RData files.](https://github.com/pjournal/mef06g-summermoon/tree/main/docs/tuik)
 
 ```{r}
 for(p in c(seq(1, length(names(data_frame)) ,1))) { 
@@ -45,4 +53,3 @@ for(p in c(seq(1, length(names(data_frame)) ,1))) {
 }
 
 ```
-

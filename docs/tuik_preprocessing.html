@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.253">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -200,9 +200,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#we-stored-tuik-data-in-separate-sheets-in-excel-so-firstly-we-read-all-sheets-and-store-them-separately-in-tables-in-r." id="toc-we-stored-tuik-data-in-separate-sheets-in-excel-so-firstly-we-read-all-sheets-and-store-them-separately-in-tables-in-r." class="nav-link active" data-scroll-target="#we-stored-tuik-data-in-separate-sheets-in-excel-so-firstly-we-read-all-sheets-and-store-them-separately-in-tables-in-r."><span class="toc-section-number">2.1</span>  We stored Tuik data in separate sheets in Excel, so firstly we read all sheets and store them separately in tables in R.</a></li>
-  <li><a href="#here-are-our-tables-which-we-analyze-later." id="toc-here-are-our-tables-which-we-analyze-later." class="nav-link" data-scroll-target="#here-are-our-tables-which-we-analyze-later."><span class="toc-section-number">2.2</span>  Here are our tables which we analyze later.</a></li>
-  <li><a href="#lastly-we-convert-all-tables-into-rdata-format-and-stored-them-in-the-docs-folder." id="toc-lastly-we-convert-all-tables-into-rdata-format-and-stored-them-in-the-docs-folder." class="nav-link" data-scroll-target="#lastly-we-convert-all-tables-into-rdata-format-and-stored-them-in-the-docs-folder."><span class="toc-section-number">2.3</span>  Lastly, we convert all tables into RData format and stored them in the docs folder.</a></li>
+  <li><a href="#creating-data-frames" id="toc-creating-data-frames" class="nav-link active" data-scroll-target="#creating-data-frames"><span class="toc-section-number">2.1</span>  Creating data frames</a></li>
+  <li><a href="#dataframes" id="toc-dataframes" class="nav-link" data-scroll-target="#dataframes"><span class="toc-section-number">2.2</span>  Dataframes</a></li>
+  <li><a href="#converting-to-rdata" id="toc-converting-to-rdata" class="nav-link" data-scroll-target="#converting-to-rdata"><span class="toc-section-number">2.3</span>  Converting to RData</a></li>
   </ul>
 </nav>
     </div>
@@ -219,42 +219,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
-  
     
   </div>
   
 
 </header>
 
-<section id="we-stored-tuik-data-in-separate-sheets-in-excel-so-firstly-we-read-all-sheets-and-store-them-separately-in-tables-in-r." class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="we-stored-tuik-data-in-separate-sheets-in-excel-so-firstly-we-read-all-sheets-and-store-them-separately-in-tables-in-r."><span class="header-section-number">2.1</span> We stored Tuik data in separate sheets in Excel, so firstly we read all sheets and store them separately in tables in R.</h2>
+<section id="creating-data-frames" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="creating-data-frames"><span class="header-section-number">2.1</span> Creating data frames</h2>
+<p>We stored Tuik data in separate sheets in Excel, so firstly we read all sheets and store them separately in tables in R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">"docs/SummerMoon - TUIK - Issizlik Dataset.xlsx"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># getting data from sheets</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>sheets <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">getSheetNames</span>(path)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>data_frame <span class="ot">&lt;-</span> <span class="fu">lapply</span>(sheets, openxlsx<span class="sc">::</span>read.xlsx, <span class="at">xlsxFile=</span>path)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># assigning names to data frame</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(data_frame) <span class="ot">&lt;-</span> sheets</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># printing the data</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#print (data_frame)</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">list2env</span>(data_frame, <span class="at">envir =</span> .GlobalEnv)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(<span class="fu">names</span>(data_frame), <span class="cf">function</span>(x)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assign</span>(x, data_frame[[x]], <span class="at">envir =</span> .GlobalEnv)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readxl' was built under R version 4.2.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'openxlsx' was built under R version 4.2.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">"docs/SummerMoon - TUIK - Issizlik Dataset.xlsx"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># getting data from sheets</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>sheets <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">getSheetNames</span>(path)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>data_frame <span class="ot">&lt;-</span> <span class="fu">lapply</span>(sheets, openxlsx<span class="sc">::</span>read.xlsx, <span class="at">xlsxFile=</span>path)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># assigning names to data frame</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(data_frame) <span class="ot">&lt;-</span> sheets</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># printing the data</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#print (data_frame)</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">list2env</span>(data_frame, <span class="at">envir =</span> .GlobalEnv)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(<span class="fu">names</span>(data_frame), <span class="cf">function</span>(x)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assign</span>(x, data_frame[[x]], <span class="at">envir =</span> .GlobalEnv)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="here-are-our-tables-which-we-analyze-later." class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="here-are-our-tables-which-we-analyze-later."><span class="header-section-number">2.2</span> Here are our tables which we analyze later.</h2>
+<section id="dataframes" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="dataframes"><span class="header-section-number">2.2</span> Dataframes</h2>
+<p>Here are our tables which we analyze later.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(data_frame)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(data_frame)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "index"                           "Labour_force_by_household_pop"  
  [3] "Labour_force_status_by_reg"      "Employed_rate_by_marital_status"
@@ -268,15 +274,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="lastly-we-convert-all-tables-into-rdata-format-and-stored-them-in-the-docs-folder." class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="lastly-we-convert-all-tables-into-rdata-format-and-stored-them-in-the-docs-folder."><span class="header-section-number">2.3</span> Lastly, we convert all tables into RData format and stored them in the docs folder.</h2>
+<section id="converting-to-rdata" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="converting-to-rdata"><span class="header-section-number">2.3</span> Converting to RData</h2>
+<p>Lastly, we convert all tables into RData format and stored them in the ~/docs/tuik folder.</p>
+<p><a href="https://github.com/pjournal/mef06g-summermoon/tree/main/docs/tuik">Please click to see RData files.</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(p <span class="cf">in</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">length</span>(<span class="fu">names</span>(data_frame)) ,<span class="dv">1</span>))) { </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">list</span>(<span class="fu">names</span>(data_frame))){</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> <span class="fu">noquote</span>(i)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">save</span>(a, <span class="at">file =</span> <span class="fu">paste</span>(<span class="st">"docs/tuik/"</span>, a[p], <span class="st">".RData"</span>))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(p <span class="cf">in</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">length</span>(<span class="fu">names</span>(data_frame)) ,<span class="dv">1</span>))) { </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">list</span>(<span class="fu">names</span>(data_frame))){</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> <span class="fu">noquote</span>(i)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">save</span>(a, <span class="at">file =</span> <span class="fu">paste</span>(<span class="st">"docs/tuik/"</span>, a[p], <span class="st">".RData"</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -415,9 +423,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
+  } 
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -439,24 +445,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -492,42 +481,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>
