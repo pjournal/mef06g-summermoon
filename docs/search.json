@@ -60,7 +60,7 @@
     "href": "tuik_preprocessing.html",
     "title": "2  TUIK Preprocessing",
     "section": "",
-    "text": "We stored Tuik data in separate sheets in Excel, so firstly we read all sheets and store them separately in tables in R.\n\nlibrary(readxl)\n\nWarning: package 'readxl' was built under R version 4.2.2\n\nlibrary(openxlsx)\n\nWarning: package 'openxlsx' was built under R version 4.2.2\n\npath <- \"docs/SummerMoon - TUIK - Issizlik Dataset.xlsx\"\n\n# getting data from sheets\nsheets <- openxlsx::getSheetNames(path)\ndata_frame <- lapply(sheets, openxlsx::read.xlsx, xlsxFile=path)\n\n# assigning names to data frame\nnames(data_frame) <- sheets\n\n# printing the data\n#print (data_frame)\n\nlist2env(data_frame, envir = .GlobalEnv)\n\nlapply(names(data_frame), function(x)\n  assign(x, data_frame[[x]], envir = .GlobalEnv)\n)"
+    "text": "We stored Tuik data in separate sheets in Excel, so firstly we read all sheets and store them separately in tables in R.\n\nlibrary(readxl)\nlibrary(openxlsx)\n  \npath <- \"docs/SummerMoon - TUIK - Issizlik Dataset.xlsx\"\n\n# getting data from sheets\nsheets <- openxlsx::getSheetNames(path)\ndata_frame <- lapply(sheets, openxlsx::read.xlsx, xlsxFile=path)\n\n# assigning names to data frame\nnames(data_frame) <- sheets\n\n# printing the data\n#print (data_frame)\n\nlist2env(data_frame, envir = .GlobalEnv)\n\nlapply(names(data_frame), function(x)\n  assign(x, data_frame[[x]], envir = .GlobalEnv)\n)"
   },
   {
     "objectID": "tuik_preprocessing.html#we-stored-tuik-data-in-separate-sheets-in-excel-so-firstly-we-read-all-sheets-and-store-them-separately-in-tables-in-r.",

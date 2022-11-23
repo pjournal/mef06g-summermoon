@@ -3,11 +3,11 @@ title: "TUIK Preprocessing"
 editor: visual
 ---
 
-## Creating data frames
+## Importing excel files
 
 We stored Tuik data in separate sheets in Excel, so firstly we read all sheets and store them separately in tables in R.
 
-```{r,results='hide'}
+```{r,results='hide',warning=FALSE}
 library(readxl)
 library(openxlsx)
   
