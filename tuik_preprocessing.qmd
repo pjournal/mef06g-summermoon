@@ -42,7 +42,7 @@ names(data_frame)
 
 Lastly, we convert all tables into RData format and stored them in the \~/docs/tuik folder.
 
-[Please click to see RData files.](https://github.com/pjournal/mef06g-summermoon/tree/main/docs/tuik)
+[Please click to see RData files](https://github.com/pjournal/mef06g-summermoon/tree/main/docs/tuik)
 
 ```{r}
 for(p in c(seq(1, length(names(data_frame)) ,1))) { 
