@@ -1,1 +1,0 @@
-"0","deals <- deals %>% mutate(deal_value = ifelse(is.na(deal_value), 0, deal_value))"

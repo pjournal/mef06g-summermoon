@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -93,6 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./tuik_eda.html" rel="next">
 <link href="./assignment1.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -191,6 +192,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./tuik_preprocessing.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">TUIK Preprocessing</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tuik_eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">TUIK EDA</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -272,7 +278,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="converting-to-rdata" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="converting-to-rdata"><span class="header-section-number">2.3</span> Converting to RData</h2>
 <p>Lastly, we convert all tables into RData format and stored them in the ~/docs/tuik folder.</p>
-<p><a href="https://github.com/pjournal/mef06g-summermoon/tree/main/docs/tuik">Please click to see RData files.</a></p>
+<p><a href="https://github.com/pjournal/mef06g-summermoon/tree/main/docs/tuik">Please click to see RData files</a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(p <span class="cf">in</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">length</span>(<span class="fu">names</span>(data_frame)) ,<span class="dv">1</span>))) { </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">list</span>(<span class="fu">names</span>(data_frame))){</span>
@@ -504,6 +510,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./tuik_eda.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">TUIK EDA</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

@@ -1,5 +1,0 @@
-"0","data %>% filter(InvestmentStage != ""Acquisition"") %>% 
-         group_by(AnnouncementDate, InvestmentStage) %>% 
-         summarise(total = sum(DealValue))
-"
-"2","`summarise()` has grouped output by 'AnnouncementDate'. You can override using the `.groups` argument."

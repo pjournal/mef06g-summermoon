@@ -1,3 +1,0 @@
-"0","df0 <- deals %>% "
-"0","  group_by(investment_stage) %>% "
-"0","  summarise(count = n(), total_deal = sum(deal_value))"

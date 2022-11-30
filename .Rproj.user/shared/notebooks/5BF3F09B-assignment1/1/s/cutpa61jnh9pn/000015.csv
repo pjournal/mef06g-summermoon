@@ -1,7 +1,0 @@
-"0","df8 <- deals %>% filter(investment_stage != ""Acquisition"") %>%"
-"0","         group_by(target_company, sector) %>%"
-"0","         summarise(total_deal = sum(deal_value), total_inv_count = sum(inv_count)) %>%"
-"0","         ungroup() %>%"
-"0","         top_n(10, total_deal) %>%"
-"0","         arrange(desc(total_deal)) %>%"
-"0","         print(n = Inf)"

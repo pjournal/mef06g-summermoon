@@ -1,4 +1,0 @@
-"0","new_cols <- c(""ID"",""target_company"",""sector"",""investor"",""announcement_date"",""financial_investor"""
-"0","              ,""investor_origin"",""stake"",""deal_value"",""investment_stage"")"
-"0",""
-"0","colnames(deals) <- new_cols"

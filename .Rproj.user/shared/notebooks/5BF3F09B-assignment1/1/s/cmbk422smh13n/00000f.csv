@@ -1,4 +1,0 @@
-"0","     %>% summarise(total, sum(`Deal Value (USD)`))
-"
-"2","Error: unexpected SPECIAL in ""     %>%""
-"

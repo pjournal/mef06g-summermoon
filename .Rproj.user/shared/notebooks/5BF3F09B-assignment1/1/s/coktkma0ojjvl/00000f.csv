@@ -1,2 +1,0 @@
-"0","deals$org_count <- lengths(strsplit(deals$investor_origin, "",""))"
-"0","deals$inv_count <- lengths(strsplit(deals$investor, "",""))"
