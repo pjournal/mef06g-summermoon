@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Summer Moon Progress Journal - 3&nbsp; TUIK EDA</title>
+<title>Summer Moon Progress Journal - 3&nbsp; TUIK Preprocessing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">TUIK EDA</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">TUIK Preprocessing</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -193,7 +193,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tuik_eda.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">TUIK EDA</span></a>
+  <a href="./tuik_eda.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">TUIK Preprocessing</span></a>
   </div>
 </li>
     </ul>
@@ -205,11 +205,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link active" data-scroll-target="#exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</a>
-  <ul class="collapse">
-  <li><a href="#data-dictionary" id="toc-data-dictionary" class="nav-link" data-scroll-target="#data-dictionary">Data Dictionary</a></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
-  </ul></li>
+  <li><a href="#data-dictionary" id="toc-data-dictionary" class="nav-link active" data-scroll-target="#data-dictionary"><span class="toc-section-number">3.1</span>  Data Dictionary</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="toc-section-number">3.2</span>  Analysis</a></li>
   </ul>
 </nav>
     </div>
@@ -218,7 +215,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">TUIK EDA</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">TUIK Preprocessing</span></h1>
 </div>
 
 
@@ -226,22 +223,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Nov 30, 2022</p>
-    </div>
-  </div>
     
   </div>
   
 
 </header>
 
-<section id="exploratory-data-analysis-eda" class="level1">
-<h1>Exploratory Data Analysis (EDA)</h1>
-<section id="data-dictionary" class="level2">
-<h2 class="anchored" data-anchor-id="data-dictionary">Data Dictionary</h2>
+<p>Exploratory Data Analysis (EDA)</p>
+<section id="data-dictionary" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="data-dictionary"><span class="header-section-number">3.1</span> Data Dictionary</h2>
 <p><strong>Non-institutional population:</strong> Comprises all the population excluding the residents of dormitories of universities, orphanage, rest homes for elderly persons, special hospitals, prisons and military barracks etc.<br>
 <br>
 <strong>Non-institutional working age population:</strong>&nbsp;Indicates the population 15 years old and over within the non-institutional civilian population.<br>
@@ -252,15 +242,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <br>
 <strong>Employment:</strong> Comprises all the non-institutional working age population who are included in the persons “at work” and “not at work” described below.<br>
 <br>
-&nbsp; &nbsp; &nbsp;·&nbsp;<strong>Persons at work:</strong> Persons economically active during the reference period for at least one hour as a regular employee, casual employee, employer, self employed or unpaid family&nbsp; worker.<br>
-&nbsp; &nbsp; &nbsp;·&nbsp;<strong>Persons not at work:</strong> Regular employee, casual employee, employer, self employed or unpaid family who have a job but away from job during the entire reference week for various reasons are considered as employed, if there is a tie with job<br>
-&nbsp; &nbsp; &nbsp; &nbsp;according to the absence reason from job.<br>
-&nbsp; &nbsp; &nbsp; &nbsp;Persons who are not at work during the reference week due to official holidays or annual leave, sick leave, working hour arrangements, job related training or legal maternity/paternity leave are employed without the need for additional criteria.<br>
-&nbsp; &nbsp; &nbsp; &nbsp;Persons who are not at work to raise a child (parental leave, unpaid leave for childcare) are considered as employed only if they have an assurance of return to work within a period of less than 3 months or less and/or they continue to receive job<br>
-&nbsp; &nbsp; &nbsp; &nbsp;related wage/salary during their absence.<br>
-&nbsp; &nbsp; &nbsp; &nbsp;Persons who are not at work because of off-season/low season are considered as employed only if they performing any task or duty during the off-season period.<br>
-&nbsp; &nbsp; &nbsp; &nbsp;Persons who are not at work due to the other reasons such as bad weather, there was no work, slowing down or stopping of work for technical or economic reasons, participating a training unrelated to job are considered as employed only if they<br>
-&nbsp; &nbsp; &nbsp; &nbsp;have an assurance of return to work within a period of 3 months or less.<br>
+</p>
+<p><strong>Persons at work:</strong> Persons economically active during the reference period for at least one hour as a regular employee, casual employee, employer, self employed or unpaid family worker.<br>
+<br>
+<strong>Persons not at work:</strong> Regular employee, casual employee, employer, self employed or unpaid family who have a job but away from job during the entire reference week for various reasons are considered as employed, if there is a tie with job according to the absence reason from job.<br>
+<br>
+Persons who are not at work during the reference week due to official holidays or annual leave, sick leave, working hour arrangements, job related training or legal maternity/paternity leave are employed without the need for additional criteria.<br>
+<br>
+Persons who are not at work to raise a child (parental leave, unpaid leave for childcare) are considered as employed only if they have an assurance of return to work within a period of less than 3 months or less and/or they continue to receive job related wage/salary during their absence.<br>
+<br>
+Persons who are not at work because of off-season/low season are considered as employed only if they performing any task or duty during the off-season period.<br>
+<br>
+Persons who are not at work due to the other reasons such as bad weather, there was no work, slowing down or stopping of work for technical or economic reasons, participating a training unrelated to job are considered as employed only if they have an assurance of return to work within a period of 3 months or less.<br>
 <br>
 The members of producer cooperatives and apprentices or trainees who are working to gain any kind of benefit (income in cash or in kind, social security, traveling cost, pocket money etc.) are considered to be employed.<br>
 <br>
@@ -270,8 +263,8 @@ The members of producer cooperatives and apprentices or trainees who are working
 <p><strong>Reference :</strong></p>
 <p><a href="https://data.tuik.gov.tr/Search/Search?text=employment%20rate" class="uri">https://data.tuik.gov.tr/Search/Search?text=employment%20rate</a></p>
 </section>
-<section id="analysis" class="level2">
-<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<section id="analysis" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="analysis"><span class="header-section-number">3.2</span> Analysis</h2>
 <p>First of all, libraries are installed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pti <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"readxl"</span>,<span class="st">"dplyr"</span>,<span class="st">"tidyverse"</span>, <span class="st">"ggplot2"</span>, <span class="st">"lubridate"</span>, <span class="st">"tidyr"</span>, <span class="st">"stringi"</span>, <span class="st">"hrbrthemes"</span>, <span class="st">"viridis"</span>, <span class="st">"scales"</span>, <span class="st">"knitr"</span>)</span>
@@ -584,7 +577,6 @@ The members of producer cooperatives and apprentices or trainees who are working
 </p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

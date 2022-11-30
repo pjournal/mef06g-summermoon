@@ -1,0 +1,28 @@
+---
+title: "Kemal"
+date: "2022-11-14"
+
+---
+
+```{r,output=FALSE, warning=FALSE}
+library(dplyr)
+library(readxl)
+library(tidyr)
+library(ggplot2)
+```
+
+```{r}
+employed_rate_by_marital_status <- read_excel("docs/SummerMoon - TUIK - Issizlik Dataset.xlsx", sheet = "Employed_rate_by_marital_status")
+
+female<-employed_rate_by_marital_status%>%filter(gender=="Female")
+male<-employed_rate_by_marital_status%>%filter(gender=="Male")
+
+```
+
+```{r}
+diff<-female%>%mutate(ratio=male$employed_rate/female$employed_rate)%>%select(-gender)
+ggplot(diff, aes(x = year, y = ratio, color = marital_status)) + geom_line()
+
+    
+```
+
