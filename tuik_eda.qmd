@@ -6,7 +6,7 @@ execute:
   warning: false
 ---
 
-Exploratory Data Analysis (EDA)
+# Exploratory Data Analysis (EDA)
 
 ## Data Dictionary
 
@@ -18,8 +18,7 @@ Exploratory Data Analysis (EDA)
 \
 **Labour force participation rate:** Indicates the ratio of the labour force to non-institutional working age population.\
 \
-**Employment:** Comprises all the non-institutional working age population who are included in the persons "at work" and "not at work" described below.\
-\
+**Employment:** Comprises all the non-institutional working age population who are included in the persons "at work" and "not at work" described below.
 
 **Persons at work:** Persons economically active during the reference period for at least one hour as a regular employee, casual employee, employer, self employed or unpaid family worker.\
 \
@@ -71,26 +70,18 @@ library(knitr)
 Data files are read in Excel.
 
 ```{r}
-labour_force_status_by_reg <- read_excel("docs/SummerMoon - TUIK - Issizlik Dataset.xlsx", sheet = "Labour_force_status_by_reg")
-```
+labour_force_status_by_reg <- readRDS("docs/tuik/Labour_force_status_by_reg.rds")
 
-```{r}
-mean_age_of_mother_by_statistic <- read_excel("docs/SummerMoon - TUIK - Issizlik Dataset.xlsx", sheet = "Mean_age_of_mother_by_Statistic")
-```
-
-```{r}
-reasons_of_not_being_in_lab_for <- read_excel("docs/SummerMoon - TUIK - Issizlik Dataset.xlsx", sheet = "Reasons_of_not_being_in_lab_for")
-```
-
-```{r}
-employed_rate_by_marital_status <- read_excel("docs/SummerMoon - TUIK - Issizlik Dataset.xlsx", sheet = "Employed_rate_by_marital_status")
+employed_rate_by_marital_status <- readRDS("docs/tuik/Employed_rate_by_marital_status.rds")
 
 female<-employed_rate_by_marital_status%>%filter(gender=="Female")
 male<-employed_rate_by_marital_status%>%filter(gender=="Male")
-```
 
-```{r}
-crude_divorce_rate_by_provinces <- read_excel("docs/SummerMoon - TUIK - Issizlik Dataset.xlsx", sheet = "Crude_divorce_rate_by_provinces")
+reasons_of_not_being_in_lab_for <- readRDS("docs/tuik/Reasons_of_not_being_in_lab_for.rds")
+
+crude_divorce_rate_by_provinces <- readRDS("docs/tuik/Crude_divorce_rate_by_provinces.rds")
+
+mean_age_of_mother_by_statistic <- readRDS("docs/tuik/Mean_age_of_mother_by_Statistic.rds")
 ```
 
 Descriptive statistics are given for high-level understanding of each data table.
@@ -193,7 +184,7 @@ reasons_of_not_being_in_lab_for %>%
 diff<-female%>%mutate(ratio=male$employed_rate/female$employed_rate) %>%select(-gender)
 ggplot(diff, aes(x = year, y = ratio, color = marital_status)) + geom_line() +
     scale_x_continuous(breaks = c(min(female$year):max(female$year))) +
-  labs(title = "Ratio of Employment to Unemployment by Gender")
+  labs(title = "Employment Ratio")
 ```
 
 ```{r}
@@ -254,7 +245,7 @@ plot_data1<-crude_divorce_rate_by_provinces %>%
 
 ggplot(plot_data1,aes(x=province, y=avg_rate, fill= province)) + 
   geom_bar(stat = "identity") +
-  labs(title = "Top 10 provinces for the average divorce rate (2012-2021)")
+  labs(title = "Top 5 provinces for the average divorce rate (2012-2021)")
 ```
 
 ```{r}
@@ -266,7 +257,7 @@ plot_data2<-crude_divorce_rate_by_provinces %>%
 
 ggplot(plot_data2,aes(x=province, y=avg_rate, fill=province)) + 
   geom_bar(stat = "identity") +
-  labs(title = "Top 10 provinces for the lowest average divorce rate (2012-2021)")
+  labs(title = "Top 5 provinces for the lowest average divorce rate (2012-2021)")
 ```
 
 \

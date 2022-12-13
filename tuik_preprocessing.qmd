@@ -38,18 +38,14 @@ Here are our tables which we analyze later.
 names(data_frame)
 ```
 
-## Converting to RData
+## Converting to RDS
 
-Lastly, we convert all tables into RData format and stored them in the \~/docs/tuik folder.
+Lastly, we convert all tables into RDS format and stored them in the \~/docs/tuik folder.
 
-[Please click to see RData files](https://github.com/pjournal/mef06g-summermoon/tree/main/docs/tuik)
+[Please click to see RDS files](https://github.com/pjournal/mef06g-summermoon/tree/main/docs/tuik)
 
 ```{r}
-for(p in c(seq(1, length(names(data_frame)) ,1))) { 
-  for(i in list(names(data_frame))){
-    a <- noquote(i)
-    save(a, file = paste("docs/tuik/", a[p], ".RData"))
-  }
+for (i in c(seq(1, length(names(data_frame)) ,1))) {
+  saveRDS(data_frame[[i]],file = paste0("docs/tuik/",names(data_frame)[i],'.rds'))
 }
-
 ```

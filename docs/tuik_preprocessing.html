@@ -197,6 +197,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./tuik_eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">TUIK EDA</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tuik_report.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">TUIK Report</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -208,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#importing-excel-files" id="toc-importing-excel-files" class="nav-link active" data-scroll-target="#importing-excel-files"><span class="toc-section-number">2.1</span>  Importing excel files</a></li>
   <li><a href="#dataframes" id="toc-dataframes" class="nav-link" data-scroll-target="#dataframes"><span class="toc-section-number">2.2</span>  Dataframes</a></li>
-  <li><a href="#converting-to-rdata" id="toc-converting-to-rdata" class="nav-link" data-scroll-target="#converting-to-rdata"><span class="toc-section-number">2.3</span>  Converting to RData</a></li>
+  <li><a href="#converting-to-rds" id="toc-converting-to-rds" class="nav-link" data-scroll-target="#converting-to-rds"><span class="toc-section-number">2.3</span>  Converting to RDS</a></li>
   </ul>
 </nav>
     </div>
@@ -275,17 +280,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="converting-to-rdata" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="converting-to-rdata"><span class="header-section-number">2.3</span> Converting to RData</h2>
-<p>Lastly, we convert all tables into RData format and stored them in the ~/docs/tuik folder.</p>
-<p><a href="https://github.com/pjournal/mef06g-summermoon/tree/main/docs/tuik">Please click to see RData files</a></p>
+<section id="converting-to-rds" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="converting-to-rds"><span class="header-section-number">2.3</span> Converting to RDS</h2>
+<p>Lastly, we convert all tables into RDS format and stored them in the ~/docs/tuik folder.</p>
+<p><a href="https://github.com/pjournal/mef06g-summermoon/tree/main/docs/tuik">Please click to see RDS files</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(p <span class="cf">in</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">length</span>(<span class="fu">names</span>(data_frame)) ,<span class="dv">1</span>))) { </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">list</span>(<span class="fu">names</span>(data_frame))){</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> <span class="fu">noquote</span>(i)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">save</span>(a, <span class="at">file =</span> <span class="fu">paste</span>(<span class="st">"docs/tuik/"</span>, a[p], <span class="st">".RData"</span>))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">length</span>(<span class="fu">names</span>(data_frame)) ,<span class="dv">1</span>))) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(data_frame[[i]],<span class="at">file =</span> <span class="fu">paste0</span>(<span class="st">"docs/tuik/"</span>,<span class="fu">names</span>(data_frame)[i],<span class="st">'.rds'</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
