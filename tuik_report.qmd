@@ -302,8 +302,7 @@ We hope that people who read this report will have an awareness about the subjec
 
 [Shiny App Link is here..](https://emre-cakmak.shinyapps.io/tuik/)
 
-```{r}
-
+```{r,eval=FALSE}
 shiny::runGitHub(repo = "pjournal/mef06g-summermoon",subdir="docs/tuik")
 ```
 
