@@ -298,7 +298,7 @@ We hope that people who read this report will have an awareness about the subjec
 
 "This is one small step for a man, one giant leap for mankind." Neil Armstrong
 
-## Shinyapp.io Link & Command
+## Shinyapps.io Link & Command
 
 [Shiny App Link is here.](https://emre-cakmak.shinyapps.io/tuik/)
 
