@@ -300,7 +300,7 @@ We hope that people who read this report will have an awareness about the subjec
 
 ## Shinyapp.io Link & Command
 
-[Shiny App Link is here..](https://emre-cakmak.shinyapps.io/tuik/)
+[Shiny App Link is here.](https://emre-cakmak.shinyapps.io/tuik/)
 
 ```{r,eval=FALSE}
 shiny::runGitHub(repo = "pjournal/mef06g-summermoon",subdir="docs/tuik")
