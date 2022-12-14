@@ -298,6 +298,15 @@ We hope that people who read this report will have an awareness about the subjec
 
 "This is one small step for a man, one giant leap for mankind." Neil Armstrong
 
+## Shinyapp.io Link & Command
+
+[Shiny App Link is here..](https://emre-cakmak.shinyapps.io/tuik/)
+
+```{r}
+
+shiny::runGitHub(repo = "pjournal/mef06g-summermoon",subdir="docs/tuik")
+```
+
 ## References
 
 <https://ilostat.ilo.org/resources/concepts-and-definitions/description-labour-force-statistics/>
