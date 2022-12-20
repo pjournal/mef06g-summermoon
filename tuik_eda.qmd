@@ -190,7 +190,7 @@ labour_force_status_by_reg %>%
   labs(title = "Unemployment Rate by Region")
 ```
 
-This boxplot shows us the unemployment rate distribution over years for each region in gender breakdown. 
+This box plot shows us the unemployment rate distribution over years for each region in gender breakdown. 
 
 First of all, we may focus on the difference between females and males. Median value of the unemployment rate is higher for females than males in every region.
 
