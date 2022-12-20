@@ -5,7 +5,7 @@ project:
 
 book:
   title: "Summer Moon Progress Journal"
-  repo-url: https://github.com/pjournal/gh-pages-quarto-template
+  repo-url: https://github.com/pjournal/mef06g-summermoon
   chapters:
     - index.qmd
     - assignment1.qmd
