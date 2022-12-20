@@ -211,10 +211,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link active" data-scroll-target="#exploratory-data-analysis-eda"><span class="toc-section-number">4</span>  Exploratory Data Analysis (EDA)</a>
+  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link active" data-scroll-target="#exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</a>
   <ul class="collapse">
-  <li><a href="#data-dictionary" id="toc-data-dictionary" class="nav-link" data-scroll-target="#data-dictionary"><span class="toc-section-number">4.1</span>  Data Dictionary</a></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="toc-section-number">4.2</span>  Analysis</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
+  <li><a href="#data-dictionary" id="toc-data-dictionary" class="nav-link" data-scroll-target="#data-dictionary">Data Dictionary</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#labour-force-rates-by-gender" id="toc-labour-force-rates-by-gender" class="nav-link" data-scroll-target="#labour-force-rates-by-gender">Labour Force Rates by Gender</a></li>
+  <li><a href="#labour-force-participation-rate-by-region" id="toc-labour-force-participation-rate-by-region" class="nav-link" data-scroll-target="#labour-force-participation-rate-by-region">Labour Force Participation Rate by Region</a></li>
+  <li><a href="#employment-rate-by-region" id="toc-employment-rate-by-region" class="nav-link" data-scroll-target="#employment-rate-by-region">Employment Rate by Region</a></li>
+  <li><a href="#unemployment-rate-by-region" id="toc-unemployment-rate-by-region" class="nav-link" data-scroll-target="#unemployment-rate-by-region">Unemployment Rate by Region</a></li>
+  <li><a href="#reasons-of-not-being-in-labour-force-by-gender" id="toc-reasons-of-not-being-in-labour-force-by-gender" class="nav-link" data-scroll-target="#reasons-of-not-being-in-labour-force-by-gender">Reasons of not Being in Labour Force by Gender</a></li>
+  <li><a href="#employment-ratio" id="toc-employment-ratio" class="nav-link" data-scroll-target="#employment-ratio">Employment Ratio</a></li>
+  <li><a href="#mean-age-of-mother-by-year" id="toc-mean-age-of-mother-by-year" class="nav-link" data-scroll-target="#mean-age-of-mother-by-year">Mean Age of Mother by Year</a></li>
+  <li><a href="#crude-divorce-rate-by-province" id="toc-crude-divorce-rate-by-province" class="nav-link" data-scroll-target="#crude-divorce-rate-by-province">Crude Divorce Rate by Province</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -232,16 +243,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Nov 30, 2022</p>
+    </div>
+  </div>
     
   </div>
   
 
 </header>
 
-<section id="exploratory-data-analysis-eda" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Exploratory Data Analysis (EDA)</h1>
-<section id="data-dictionary" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="data-dictionary"><span class="header-section-number">4.1</span> Data Dictionary</h2>
+<section id="exploratory-data-analysis-eda" class="level1">
+<h1>Exploratory Data Analysis (EDA)</h1>
+<section id="key-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li><p>Men participate in the labour force <strong>two</strong> <strong>times more</strong> than women. Labour participation and employment rates are aligned. <strong>Economic crisis in 2019</strong> had a <strong>negative</strong> impact on the labour market. <strong>COVID</strong> reinforced this effect by increasing the <strong>unemployment rate</strong>.</p></li>
+<li><p>In <strong>Doğu Karadeniz, Güneydoğu Anadolu and Ortadoğu Anadolu</strong>, gender does not matter for the unemployment. Both men and women are unemployed. Men are <strong>more unemployed</strong> than women in <strong>Kuzeydoğu Anadolu</strong> whereas women unemployment rate is higher than that for men in other regions.</p></li>
+<li><p>Being a <strong>housewife</strong> is the main reason for women that prevents them not being in the labour force. There is a <strong>stereotypical gender structure</strong> in Turkey that emphasizes on women are house-keepers, men are bread-winners. In addition, <strong>discouragement</strong> for both men and women overlapped in 2021. People are less motivated to seek for a job in Turkey over years.</p></li>
+<li><p>Marital status affects the <strong>employment rate for women</strong>. Men dominance factor is dramatically higher in <strong>married</strong> women compared to <strong>never married or divorced</strong> women. It may have 2 different reasons: Married women are struggling with participating in work life; divorced or never married women need to work to obtain their own economic freedom.</p></li>
+<li><p>Divorce rates between provinces are quite different in Turkey. While the top 5 highest divorce rates are in the <strong>Mediterranean</strong> or <strong>West Side</strong>, but the lowest 5 are at the <strong>East Side</strong> of Turkey. When we combine this info with regional unemployment rates, it’s being more dramatic for women.</p></li>
+</ul>
+</section>
+<section id="data-dictionary" class="level2">
+<h2 class="anchored" data-anchor-id="data-dictionary">Data Dictionary</h2>
 <p><strong>Non-institutional population:</strong> Comprises all the population excluding the residents of dormitories of universities, orphanage, rest homes for elderly persons, special hospitals, prisons and military barracks etc.<br>
 <br>
 <strong>Non-institutional working age population:</strong>&nbsp;Indicates the population 15 years old and over within the non-institutional civilian population.<br>
@@ -271,8 +298,8 @@ The members of producer cooperatives and apprentices or trainees who are working
 <p><strong>Reference :</strong></p>
 <p><a href="https://data.tuik.gov.tr/Search/Search?text=employment%20rate" class="uri">https://data.tuik.gov.tr/Search/Search?text=employment%20rate</a></p>
 </section>
-<section id="analysis" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="analysis"><span class="header-section-number">4.2</span> Analysis</h2>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
 <p>First of all, libraries are installed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pti <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"readxl"</span>,<span class="st">"dplyr"</span>,<span class="st">"tidyverse"</span>, <span class="st">"ggplot2"</span>, <span class="st">"lubridate"</span>, <span class="st">"tidyr"</span>, <span class="st">"stringi"</span>, <span class="st">"hrbrthemes"</span>, <span class="st">"viridis"</span>, <span class="st">"scales"</span>, <span class="st">"knitr"</span>)</span>
@@ -384,6 +411,9 @@ The members of producer cooperatives and apprentices or trainees who are working
 </div>
 </div>
 <p>After this section, data visualizations are made to have a better understanding about data.</p>
+<section id="labour-force-rates-by-gender" class="level3">
+<h3 class="anchored" data-anchor-id="labour-force-rates-by-gender">Labour Force Rates by Gender</h3>
+<p>This graph shows the labour force participation, employment and unemployment rates by gender over years (2014-2021). Women unemployment rate is higher than men's unemployment rate whereas&nbsp; other metrics for women are quite low compared to&nbsp; those for men. Until 2019, the unemployment rate slightly changes. However, it starts to increase after 2019 due to the economic crisis in Turkey. COVID made the unemployment rate for men and women almost equal. Labour participation and employment rates for men are two times more than those for women. In 2020, labour participation and employment rates are lower compared to other years due to COVID.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>labour_force_status_by_reg <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">"Total"</span>) <span class="sc">%&gt;%</span></span>
@@ -400,6 +430,10 @@ The members of producer cooperatives and apprentices or trainees who are working
 <p><img src="tuik_eda_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+<section id="labour-force-participation-rate-by-region" class="level3">
+<h3 class="anchored" data-anchor-id="labour-force-participation-rate-by-region">Labour Force Participation Rate by Region</h3>
+<p>This chart displays the distribution of labour force participation by gender over years (2014-2021). Men participate in the labour force more than women independent of region. In addition, the labour force participation rate slightly decreased for all regions in 2010 due to COVID. Regional labour participation rate patterns are quite the same except for Doğu Karadeniz and Güneydoğu Anadolu. Labour force rates for men and women are close in Doğu Karadeniz since women labour force participation rate is higher than other regions. On the contrary, there is a huge gap between men and women in Güneydoğu Anadolu.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>labour_force_status_by_reg <span class="sc">%&gt;%</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">!=</span> <span class="st">"Total"</span>) <span class="sc">%&gt;%</span></span>
@@ -413,6 +447,10 @@ The members of producer cooperatives and apprentices or trainees who are working
 <p><img src="tuik_eda_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+<section id="employment-rate-by-region" class="level3">
+<h3 class="anchored" data-anchor-id="employment-rate-by-region">Employment Rate by Region</h3>
+<p>This graph illustrates trends in employment rate between 2014 and 2021. It has a similar pattern with labour force participation rate.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>labour_force_status_by_reg <span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">!=</span> <span class="st">"Total"</span>) <span class="sc">%&gt;%</span></span>
@@ -426,6 +464,10 @@ The members of producer cooperatives and apprentices or trainees who are working
 <p><img src="tuik_eda_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+<section id="unemployment-rate-by-region" class="level3">
+<h3 class="anchored" data-anchor-id="unemployment-rate-by-region">Unemployment Rate by Region</h3>
+<p>This graph shows trends in unemployment rate between 2014 and 2021. Unemployment rate for men is higher than that for women in Kuzeydoğu Anadolu. Lines overlap in Doğu Karadeniz, Güneydoğu Anadolu and Ortadoğu Anadolu. There is no distinction between men and women. They are both unemployed. Unemployment rate is low in Batı Karadeniz compared to other regions. Unemployment rate peaked in 2019 generally due to the economic crisis in Turkey.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>labour_force_status_by_reg <span class="sc">%&gt;%</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">!=</span> <span class="st">"Total"</span>) <span class="sc">%&gt;%</span></span>
@@ -439,6 +481,10 @@ The members of producer cooperatives and apprentices or trainees who are working
 <p><img src="tuik_eda_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>This boxplot shows us the unemployment rate distribution over years for each region in gender breakdown.&nbsp;</p>
+<p>First of all, we may focus on the difference between females and males. Median values of the unemployment rate is higher for females than males in every region.</p>
+<p>The second objective is that the Marmara region and the west side of Turkey have a lower unemployment rate than other regions.&nbsp;</p>
+<p>The third objective is about stabilization of the unemployment rate. We can easily see that the Marmara region and the west side of Turkey has more consistent unemployment rates. Especially boxplot ranges are maximum in Middle East of Anatolian region, It means that there is no stability over year in this region.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>labour_force_status_by_reg <span class="sc">%&gt;%</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">!=</span> <span class="st">"Total"</span>) <span class="sc">%&gt;%</span></span>
@@ -446,28 +492,37 @@ The members of producer cooperatives and apprentices or trainees who are working
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">"steelblue"</span>) <span class="sc">+</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(gender <span class="sc">~</span> region) <span class="sc">+</span> </span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>,<span class="at">vjust=</span><span class="dv">1</span>,<span class="at">hjust=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">3</span>)) <span class="sc">+</span></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Unemployment Distribution by Region"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="tuik_eda_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+<section id="reasons-of-not-being-in-labour-force-by-gender" class="level3">
+<h3 class="anchored" data-anchor-id="reasons-of-not-being-in-labour-force-by-gender">Reasons of not Being in Labour Force by Gender</h3>
+<p>This chart shows trends for not being in the labour force by reasons. Housewife is the main reason that prevents women participation in the labour force. It is not a choice as the name implies. Since women have to take care of housework, they are unemployed whereas men keep working after having children. Education /Training lines overlap. Both men and women care about Education /Training. "Not seeking for a job, available to start - Discouraged" lines are merged in 2021. Due to the economic crisis in Turkey, people are not motivated to find a job. Being disabled, old, ill etc. puts women back in the labour force.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>reasons_of_not_being_in_lab_for <span class="sc">%&gt;%</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#filter(gender == "Female") %&gt;%</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(reason,year, gender) <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sum_of_not_in_lab_force =</span> <span class="fu">sum</span>(pop_not_in_lab_force)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sum_of_not_in_lab_force =</span> <span class="fu">sum</span>(pop_not_in_lab_force), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">values_from =</span> sum_of_not_in_lab_force, <span class="at">names_from =</span> gender) <span class="sc">%&gt;%</span></span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">year =</span> year,<span class="at">reason =</span> reason, <span class="at">Female_ =</span> Female<span class="sc">/</span> (Female<span class="sc">+</span>Male), <span class="at">Male_ =</span> <span class="dv">1</span> <span class="sc">-</span> Female<span class="sc">/</span> (Female<span class="sc">+</span>Male)) <span class="sc">%&gt;%</span></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols=</span> <span class="fu">ends_with</span>(<span class="st">"ale_"</span>),<span class="at">values_to =</span> <span class="st">"ratio_not_in_labor_force"</span>, <span class="at">names_to =</span> <span class="st">"gender"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> ratio_not_in_labor_force, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> reason) <span class="sc">+</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Reasons of not being in labour force by Gender"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">3</span>)) <span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Reasons of not being in labour force by Gender"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="tuik_eda_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+<section id="employment-ratio" class="level3">
+<h3 class="anchored" data-anchor-id="employment-ratio">Employment Ratio</h3>
+<p>One of our main aims is understanding the proportion of women in labor in general aspects. We calculated a new metric called employment ratio to detect men vs women participation.&nbsp; Employment Ratio explains the ratio of Men Employment Rate to Women Employment Rate. It’s a KPI for understanding men’s dominance over women in working life. The graph shows us there is a major difference between married and divorced women in work life. If the marital status is married for both genders, men’s dominance factor is sharply increasing according to never married or divorced people. It may explain 2 different results in terms of 2 different points of view: Married women are struggling with participating work life; divorced or never married women needs to work to obtain their own economic freedom.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>diff<span class="ot">&lt;-</span>female<span class="sc">%&gt;%</span><span class="fu">mutate</span>(<span class="at">ratio=</span>male<span class="sc">$</span>employed_rate<span class="sc">/</span>female<span class="sc">$</span>employed_rate) <span class="sc">%&gt;%</span><span class="fu">select</span>(<span class="sc">-</span>gender)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diff, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> ratio, <span class="at">color =</span> marital_status)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
@@ -477,6 +532,10 @@ The members of producer cooperatives and apprentices or trainees who are working
 <p><img src="tuik_eda_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+</section>
+<section id="mean-age-of-mother-by-year" class="level3">
+<h3 class="anchored" data-anchor-id="mean-age-of-mother-by-year">Mean Age of Mother by Year</h3>
+<p>When we inspect the mean age of the mothers in Istanbul province which is the biggest city of Turkey and represent the almost 25% of the country population, its clear that mean age has increased from 28 to 30 in 12 years. There is no spectacular change in any year transition but there is 2 years absolute change in 12 years total. It means that women tend to be mother in more old ages.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mean_age_of_mother_by_statistic <span class="sc">%&gt;%</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(province <span class="sc">==</span> <span class="st">"İstanbul"</span>) <span class="sc">%&gt;%</span></span>
@@ -490,48 +549,49 @@ The members of producer cooperatives and apprentices or trainees who are working
 <p><img src="tuik_eda_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>We can observe the increasing trend on the mean age of mothers year by year in all regions. The histogram plot’s range and distribution stay same but their minimum and maximum values are rising by year. Especially, mean motherhood age change is more evident on 2012-2013 transition inspite of changes are not spectacular in 2009-2012 interval.&nbsp; The other major changes are after 2019.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>five_metropolis <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"İstanbul"</span>,<span class="st">"Ankara"</span>,<span class="st">"İzmir"</span>,<span class="st">"Bursa"</span>,<span class="st">"Adana"</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>mean_age_of_mother_by_statistic <span class="sc">%&gt;%</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(province <span class="sc">%in%</span> five_metropolis, year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2019</span>,<span class="dv">2020</span>,<span class="dv">2021</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y=</span> mother_mean_age)) <span class="sc">+</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(), <span class="at">alpha =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span>province) <span class="sc">+</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">35</span>) <span class="sc">+</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>,mother_mean_age)), <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">vjust =</span> <span class="fl">1.5</span>, <span class="at">colour =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st"> Years"</span>, <span class="at">y =</span> <span class="st">"Mean Mother Age</span><span class="sc">\n</span><span class="st">"</span>, <span class="at">title =</span> <span class="st">"</span><span class="sc">\n</span><span class="st"> Mean Mother Age by Year and Metropolis </span><span class="sc">\n</span><span class="st">"</span>) <span class="sc">+</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>), </span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">colour=</span><span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">colour=</span><span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">10</span>),</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">"lightblue"</span>, <span class="at">colour=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">1</span>),</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">size=</span><span class="fu">rel</span>(<span class="fl">1.2</span>))) <span class="sc">+</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mean Age of Mother by Metropolis in the last 3 years"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mean_age_of_mother_by_statistic <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mother_mean_age, <span class="at">fill =</span> year)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(year<span class="sc">~</span>.) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mean Age of Mother by Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="tuik_eda_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mean_age_of_mother_by_statistic <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mother_mean_age, <span class="at">fill =</span> year)) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(year<span class="sc">~</span>.) <span class="sc">+</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mean Age of Mother by Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>five_metropolis <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"İstanbul"</span>,<span class="st">"Ankara"</span>,<span class="st">"İzmir"</span>,<span class="st">"Bursa"</span>,<span class="st">"Adana"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>mean_age_of_mother_by_statistic <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(province <span class="sc">%in%</span> five_metropolis, year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2019</span>,<span class="dv">2020</span>,<span class="dv">2021</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y=</span> mother_mean_age)) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(), <span class="at">alpha =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span>province) <span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">35</span>) <span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>,mother_mean_age)), <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">vjust =</span> <span class="fl">1.5</span>, <span class="at">colour =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st"> Years"</span>, <span class="at">y =</span> <span class="st">"Mean Mother Age</span><span class="sc">\n</span><span class="st">"</span>, <span class="at">title =</span> <span class="st">"</span><span class="sc">\n</span><span class="st"> Mean Mother Age by Year and Metropolis </span><span class="sc">\n</span><span class="st">"</span>) <span class="sc">+</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>), </span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">colour=</span><span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">colour=</span><span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">"lightblue"</span>, <span class="at">colour=</span><span class="st">"black"</span>, <span class="at">size=</span><span class="dv">1</span>),</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>, <span class="at">size=</span><span class="fu">rel</span>(<span class="fl">1.2</span>))) <span class="sc">+</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mean Age of Mother by Metropolis in the last 3 years"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="tuik_eda_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><strong>Minimum Average Age of Mother by Region</strong></p>
+<p>This is the table of minimum average ages of regions by year. This table tells us that Istanbul is the highest average motherhood age when compared to other regions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mean_age_of_mother_by_statistic <span class="sc">%&gt;%</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(region,year ,mother_mean_age) <span class="sc">%&gt;%</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region,year) <span class="sc">%&gt;%</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">min_mean_mother_age =</span> <span class="fu">min</span>(mother_mean_age)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">min_mean_mother_age =</span> <span class="fu">min</span>(mother_mean_age), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">values_from =</span> min_mean_mother_age, <span class="at">names_from =</span> year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12 × 14
-# Groups:   region [12]
    region  `2009` `2010` `2011` `2012` `2013` `2014` `2015` `2016` `2017` `2018`
    &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
  1 "TR1 İ…   28.0   28.3   28.4   28.7   28.9   29.1   29.2   29.4   29.6   29.7
@@ -549,6 +609,10 @@ The members of producer cooperatives and apprentices or trainees who are working
 # … with 3 more variables: `2019` &lt;dbl&gt;, `2020` &lt;dbl&gt;, `2021` &lt;dbl&gt;</code></pre>
 </div>
 </div>
+</section>
+<section id="crude-divorce-rate-by-province" class="level3">
+<h3 class="anchored" data-anchor-id="crude-divorce-rate-by-province">Crude Divorce Rate by Province</h3>
+<p>When we checked the highest and lowest divorce rates by regions. We observed that the West Side and Mediterranean coast cities are the top 5 cities in divorce rate while the top 5 cities with lowest divorce rate are on the East Side of Turkey. If we combine this information with the unemployment rate, it becomes a more dramatic state.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plot_data1<span class="ot">&lt;-</span>crude_divorce_rate_by_provinces <span class="sc">%&gt;%</span> </span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">group_by</span>(province) <span class="sc">%&gt;%</span> </span>
@@ -556,9 +620,10 @@ The members of producer cooperatives and apprentices or trainees who are working
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_rate)) <span class="sc">%&gt;%</span></span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">top_n</span>( <span class="dv">5</span>)</span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_data1,<span class="fu">aes</span>(<span class="at">x=</span>province, <span class="at">y=</span>avg_rate, <span class="at">fill=</span> province)) <span class="sc">+</span> </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_data1,<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(province, <span class="sc">-</span>avg_rate), <span class="at">y=</span>avg_rate, <span class="at">fill=</span> province)) <span class="sc">+</span> </span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 5 provinces for the average divorce rate (2012-2021)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 5 provinces for the average divorce rate (2012-2021)"</span>) <span class="sc">+</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"province"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="tuik_eda_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -570,9 +635,10 @@ The members of producer cooperatives and apprentices or trainees who are working
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">arrange</span>(avg_rate) <span class="sc">%&gt;%</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) </span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_data2,<span class="fu">aes</span>(<span class="at">x=</span>province, <span class="at">y=</span>avg_rate, <span class="at">fill=</span>province)) <span class="sc">+</span> </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_data2,<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(province, <span class="sc">-</span>avg_rate), <span class="at">y=</span>avg_rate, <span class="at">fill=</span>province)) <span class="sc">+</span> </span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 5 provinces for the lowest average divorce rate (2012-2021)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Top 5 provinces for the lowest average divorce rate (2012-2021)"</span>) <span class="sc">+</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"province"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="tuik_eda_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -581,6 +647,7 @@ The members of producer cooperatives and apprentices or trainees who are working
 </p>
 
 
+</section>
 </section>
 </section>
 
