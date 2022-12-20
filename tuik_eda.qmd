@@ -129,7 +129,7 @@ After this section, data visualizations are made to have a better understanding 
 
 ### Labour Force Rates by Gender
 
-This graph shows the labour force participation, employment and unemployment rates by gender over years (2014-2021). Women unemployment rate is higher than men\'s unemployment rate whereas  other metrics for women are quite low compared to  those for men. Until 2019, the unemployment rate slightly changes. However, it starts to increase after 2019 due to the economic crisis in Turkey. COVID made the unemployment rate for men and women almost equal. Labour participation and employment rates for men are two times more than those for women. In 2020, labour participation and employment rates are lower compared to other years due to COVID.
+This graph shows the labour force participation, employment and unemployment rates by gender over years (2014-2021). Women unemployment rate is higher than men's unemployment rate whereas  other metrics for women are quite low compared to  those for men. Until 2019, the unemployment rate slightly changes. However, it starts to increase after 2019 due to the economic crisis in Turkey. COVID made the unemployment rate for men and women almost equal. Labour participation and employment rates for men are two times more than those for women. In 2020, labour participation and employment rates are lower compared to other years due to COVID.
 
 ```{r}
 labour_force_status_by_reg %>%
@@ -192,11 +192,11 @@ labour_force_status_by_reg %>%
 
 This boxplot shows us the unemployment rate distribution over years for each region in gender breakdown. 
 
-First of all, we may focus on the difference between females and males. Median values of the unemployment rate is higher for females than males in every region.
+First of all, we may focus on the difference between females and males. Median value of the unemployment rate is higher for females than males in every region.
 
 The second objective is that the Marmara region and the west side of Turkey have a lower unemployment rate than other regions. 
 
-The third objective is about stabilization of the unemployment rate. We can easily see that the Marmara region and the west side of Turkey has more consistent unemployment rates. Especially boxplot ranges are maximum in Middle East of Anatolian region, It means that there is no stability over year in this region.
+The third objective is about stabilization of the unemployment rate. We can easily see that the Marmara region and the west side of Turkey has more consistent unemployment rates. Especially box plot ranges are maximum in Middle East of Anatolian region, It means that there is no stability over year in this region.
 
 ```{r}
 labour_force_status_by_reg %>%
@@ -211,7 +211,7 @@ labour_force_status_by_reg %>%
 
 ### Reasons of not Being in Labour Force by Gender
 
-This chart shows trends for not being in the labour force by reasons. Housewife is the main reason that prevents women participation in the labour force. It is not a choice as the name implies. Since women have to take care of housework, they are unemployed whereas men keep working after having children. Education /Training lines overlap. Both men and women care about Education /Training. \"Not seeking for a job, available to start - Discouraged\" lines are merged in 2021. Due to the economic crisis in Turkey, people are not motivated to find a job. Being disabled, old, ill etc. puts women back in the labour force.
+This chart shows trends for not being in the labour force by reasons. Housewife is the main reason that prevents women participation in the labour force. It is not a choice as the name implies. Since women have to take care of housework, they are unemployed whereas men keep working after having children. Education /Training lines overlap. Both men and women care about Education /Training. "Not seeking for a job, available to start - Discouraged" lines are merged in 2021. Due to the economic crisis in Turkey, people are not motivated to find a job. Being disabled, old, ill etc. puts women back in the labour force.
 
 ```{r}
 reasons_of_not_being_in_lab_for %>%
@@ -241,7 +241,7 @@ ggplot(diff, aes(x = year, y = ratio, color = marital_status)) + geom_line() +
 
 ### Mean Age of Mother by Year
 
-When we inspect the mean age of the mothers in Istanbul province which is the biggest city of Turkey and represent the almost 25% of the country population, its clear that mean age has increased from 28 to 30 in 12 years. There is no spectacular change in any year transition but there is 2 years absolute change in 12 years total. It means that women tend to be mother in more old ages.
+When we inspect the mean age of the mothers in Istanbul province which is the biggest city of Turkey and represent almost 25% of the country's population, it's clear that mean age has increased from 28 to 30 in 12 years. There is no spectacular change in any year transition but there is 2 years absolute change in 12 years total. It means that women tend to be mothers in more old ages.
 
 ```{r}
 mean_age_of_mother_by_statistic %>%
@@ -254,7 +254,7 @@ mean_age_of_mother_by_statistic %>%
   labs(title = "Mean Age of Mother by Year in İstanbul")
 ```
 
-We can observe the increasing trend on the mean age of mothers year by year in all regions. The histogram plot's range and distribution stay same but their minimum and maximum values are rising by year. Especially, mean motherhood age change is more evident on 2012-2013 transition inspite of changes are not spectacular in 2009-2012 interval.  The other major changes are after 2019.
+We can observe the increasing trend on the mean age of mothers year by year in all regions. The histogram plot's range and distribution stay the same but their minimum and maximum values are rising by year. In particular, the mean motherhood age change is more evident on 2012-2013 transition in spite of changes that are not spectacular between 2009 and 2012.  The other major changes are after 2019.
 
 ```{r}
 mean_age_of_mother_by_statistic %>%
@@ -286,7 +286,7 @@ mean_age_of_mother_by_statistic %>%
 
 **Minimum Average Age of Mother by Region**
 
-This is the table of minimum average ages of regions by year. This table tells us that Istanbul is the highest average motherhood age when compared to other regions.
+This is the table of minimum average ages of regions by year. This table tells us that Istanbul has the highest average motherhood age when compared to other regions.
 
 ```{r}
 mean_age_of_mother_by_statistic %>%

@@ -413,7 +413,7 @@ The members of producer cooperatives and apprentices or trainees who are working
 <p>After this section, data visualizations are made to have a better understanding about data.</p>
 <section id="labour-force-rates-by-gender" class="level3">
 <h3 class="anchored" data-anchor-id="labour-force-rates-by-gender">Labour Force Rates by Gender</h3>
-<p>This graph shows the labour force participation, employment and unemployment rates by gender over years (2014-2021). Women unemployment rate is higher than men's unemployment rate whereas&nbsp; other metrics for women are quite low compared to&nbsp; those for men. Until 2019, the unemployment rate slightly changes. However, it starts to increase after 2019 due to the economic crisis in Turkey. COVID made the unemployment rate for men and women almost equal. Labour participation and employment rates for men are two times more than those for women. In 2020, labour participation and employment rates are lower compared to other years due to COVID.</p>
+<p>This graph shows the labour force participation, employment and unemployment rates by gender over years (2014-2021). Women unemployment rate is higher than men’s unemployment rate whereas&nbsp; other metrics for women are quite low compared to&nbsp; those for men. Until 2019, the unemployment rate slightly changes. However, it starts to increase after 2019 due to the economic crisis in Turkey. COVID made the unemployment rate for men and women almost equal. Labour participation and employment rates for men are two times more than those for women. In 2020, labour participation and employment rates are lower compared to other years due to COVID.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>labour_force_status_by_reg <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">"Total"</span>) <span class="sc">%&gt;%</span></span>
@@ -482,9 +482,9 @@ The members of producer cooperatives and apprentices or trainees who are working
 </div>
 </div>
 <p>This boxplot shows us the unemployment rate distribution over years for each region in gender breakdown.&nbsp;</p>
-<p>First of all, we may focus on the difference between females and males. Median values of the unemployment rate is higher for females than males in every region.</p>
+<p>First of all, we may focus on the difference between females and males. Median value of the unemployment rate is higher for females than males in every region.</p>
 <p>The second objective is that the Marmara region and the west side of Turkey have a lower unemployment rate than other regions.&nbsp;</p>
-<p>The third objective is about stabilization of the unemployment rate. We can easily see that the Marmara region and the west side of Turkey has more consistent unemployment rates. Especially boxplot ranges are maximum in Middle East of Anatolian region, It means that there is no stability over year in this region.</p>
+<p>The third objective is about stabilization of the unemployment rate. We can easily see that the Marmara region and the west side of Turkey has more consistent unemployment rates. Especially box plot ranges are maximum in Middle East of Anatolian region, It means that there is no stability over year in this region.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>labour_force_status_by_reg <span class="sc">%&gt;%</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">!=</span> <span class="st">"Total"</span>) <span class="sc">%&gt;%</span></span>
@@ -501,7 +501,7 @@ The members of producer cooperatives and apprentices or trainees who are working
 </section>
 <section id="reasons-of-not-being-in-labour-force-by-gender" class="level3">
 <h3 class="anchored" data-anchor-id="reasons-of-not-being-in-labour-force-by-gender">Reasons of not Being in Labour Force by Gender</h3>
-<p>This chart shows trends for not being in the labour force by reasons. Housewife is the main reason that prevents women participation in the labour force. It is not a choice as the name implies. Since women have to take care of housework, they are unemployed whereas men keep working after having children. Education /Training lines overlap. Both men and women care about Education /Training. "Not seeking for a job, available to start - Discouraged" lines are merged in 2021. Due to the economic crisis in Turkey, people are not motivated to find a job. Being disabled, old, ill etc. puts women back in the labour force.</p>
+<p>This chart shows trends for not being in the labour force by reasons. Housewife is the main reason that prevents women participation in the labour force. It is not a choice as the name implies. Since women have to take care of housework, they are unemployed whereas men keep working after having children. Education /Training lines overlap. Both men and women care about Education /Training. “Not seeking for a job, available to start - Discouraged” lines are merged in 2021. Due to the economic crisis in Turkey, people are not motivated to find a job. Being disabled, old, ill etc. puts women back in the labour force.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>reasons_of_not_being_in_lab_for <span class="sc">%&gt;%</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#filter(gender == "Female") %&gt;%</span></span>
@@ -535,7 +535,7 @@ The members of producer cooperatives and apprentices or trainees who are working
 </section>
 <section id="mean-age-of-mother-by-year" class="level3">
 <h3 class="anchored" data-anchor-id="mean-age-of-mother-by-year">Mean Age of Mother by Year</h3>
-<p>When we inspect the mean age of the mothers in Istanbul province which is the biggest city of Turkey and represent the almost 25% of the country population, its clear that mean age has increased from 28 to 30 in 12 years. There is no spectacular change in any year transition but there is 2 years absolute change in 12 years total. It means that women tend to be mother in more old ages.</p>
+<p>When we inspect the mean age of the mothers in Istanbul province which is the biggest city of Turkey and represent almost 25% of the country’s population, it’s clear that mean age has increased from 28 to 30 in 12 years. There is no spectacular change in any year transition but there is 2 years absolute change in 12 years total. It means that women tend to be mothers in more old ages.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mean_age_of_mother_by_statistic <span class="sc">%&gt;%</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(province <span class="sc">==</span> <span class="st">"İstanbul"</span>) <span class="sc">%&gt;%</span></span>
@@ -549,7 +549,7 @@ The members of producer cooperatives and apprentices or trainees who are working
 <p><img src="tuik_eda_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>We can observe the increasing trend on the mean age of mothers year by year in all regions. The histogram plot’s range and distribution stay same but their minimum and maximum values are rising by year. Especially, mean motherhood age change is more evident on 2012-2013 transition inspite of changes are not spectacular in 2009-2012 interval.&nbsp; The other major changes are after 2019.</p>
+<p>We can observe the increasing trend on the mean age of mothers year by year in all regions. The histogram plot’s range and distribution stay the same but their minimum and maximum values are rising by year. In particular, the mean motherhood age change is more evident on 2012-2013 transition in spite of changes that are not spectacular between 2009 and 2012.&nbsp; The other major changes are after 2019.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mean_age_of_mother_by_statistic <span class="sc">%&gt;%</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mother_mean_age, <span class="at">fill =</span> year)) <span class="sc">+</span></span>
@@ -583,7 +583,7 @@ The members of producer cooperatives and apprentices or trainees who are working
 </div>
 </div>
 <p><strong>Minimum Average Age of Mother by Region</strong></p>
-<p>This is the table of minimum average ages of regions by year. This table tells us that Istanbul is the highest average motherhood age when compared to other regions.</p>
+<p>This is the table of minimum average ages of regions by year. This table tells us that Istanbul has the highest average motherhood age when compared to other regions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mean_age_of_mother_by_statistic <span class="sc">%&gt;%</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(region,year ,mother_mean_age) <span class="sc">%&gt;%</span></span>
